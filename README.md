@@ -3,7 +3,7 @@ HamsterBear
 
 HamsterBear 是基于全志 F1C200s 设计的嵌入式Linux开发板
 
-访问本项目的官网网站：
+访问本项目的官网网站（建设中）：
 [embeddedboys.space/hamsterbear](embeddedboys.space/hamsterbear)
 
 硬件配置
