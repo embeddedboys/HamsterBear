@@ -1,0 +1,172 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR X11)
+/*
+ * Copyright 2018 Icenowy Zheng <icenowy@aosc.io>
+ */
+
+/dts-v1/;
+#include "suniv-f1c100s.dtsi"
+
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+	model = "Lichee Pi Nano";
+	compatible = "licheepi,licheepi-nano", "allwinner,suniv-f1c100s";
+
+	aliases {
+		serial0 = &uart0;
+		//serial1 = &uart1;
+		i2c0 = &i2c0;
+		spi0 = &spi0;
+		spi1 = &spi1;
+	};
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+
+        reg_vcc3v3: vcc3v3 {
+                compatible = "regulator-fixed";
+                regulator-name = "vcc3v3";
+                regulator-min-microvolt = <3300000>;
+                regulator-max-microvolt = <3300000>;
+        };
+/*
+	lradc: lradc@1c23400 {
+		compatible = "allwinner,sun4i-a10-lradc-keys";
+	        reg = <0x01c23400 0x100>;
+        	interrupts = <22>;
+	        vref-supply = <&reg_vcc3v3>;
+
+	        button-132 {
+        	    label = "PRE";
+	            linux,code = <105>;
+	            channel = <0>;
+	            voltage = <1396825>;
+	        };
+
+	        button-196 {
+	            label = "NEXT";
+	            linux,code = <106>;
+	            channel = <0>;
+	            voltage = <1955555>;
+       		};
+
+	        button-233 {
+	            label = "OK";
+	            linux,code = <28>;
+	            channel = <0>;
+	            voltage = <233000>;
+       		};
+
+	        button-271 {
+	            label = "BACK";
+	            linux,code = <14>;
+	            channel = <0>;
+	            voltage = <271300>;
+       		};
+	};
+*/
+	lradc: lradc@1c23400 {
+		compatible = "allwinner,suniv-f1c100s-lradc-keys";
+	        reg = <0x01c23400 0x100>;
+        	interrupts = <22>;
+	        vref-supply = <&reg_vcc3v3>;
+	};
+
+};
+
+&dma {
+	status = "okay";
+};
+
+&uart0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart0_pe_pins>;
+	status = "okay";
+};
+
+/*
+&uart1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart1_pa_pins>;
+	status = "disabled";
+};
+*/
+
+&i2c0 {
+	pinctl-names = "default";
+	pinctrl-0 = <&i2c0_pe_pins>;
+	status = "okay";
+	i2c-max-frequency = <400000>;
+};
+
+&spi0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&spi0_pc_pins>;
+	status = "disabled";
+	spi-max-frequency = <50000000>;
+};
+
+&spi1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&spi1_pa_pins>;
+	status = "okay";
+        spi-max-frequency = <50000000>;
+
+	st7789v: st7789v@0 {
+                #address-cells = <1>;
+                #size-cells = <1>;
+                compatible = "sitronix,st7789v";
+                reg = <0>;
+                spi-max-frequency = <50000000>;
+                rgb;
+                buswidth = <8>;
+                rotate = <90>;
+                fps = <60>;
+                spi-cpol;
+                spi-cpha;
+                reset-gpios = <&pio 4 10 GPIO_ACTIVE_HIGH>;
+                dc-gpios = <&pio 4 11 GPIO_ACTIVE_LOW>;
+                debug = <1>;
+        };
+
+/*
+	ssd1306: ssd1306@0 {
+                #address-cells = <1>;
+                #size-cells = <1>;
+                compatible = "solomon,ssd1306";
+                reg = <0>;
+                spi-max-frequency = <50000000>;
+                buswidth = <8>;
+                rotate = <0>;
+                fps = <60>;
+                spi-cpol;
+                spi-cpha;
+                reset-gpios = <&pio 4 9 GPIO_ACTIVE_HIGH>;
+                dc-gpios = <&pio 4 10 GPIO_ACTIVE_LOW>;
+                debug = <1>;
+        };
+
+*/
+};
+
+&mmc0 {
+	vmmc-supply = <&reg_vcc3v3>;
+	bus-width = <4>;
+	broken-cd;
+	status = "okay";
+};
+
+&otg_sram {
+        status = "okay";
+};
+
+&usb_otg {
+        dr_mode = "otg";
+        status = "okay";
+};
+
+&usbphy {
+        usb0_id_det-gpio = <&pio 4 2 GPIO_ACTIVE_HIGH>; /* PE2 */
+        status = "okay";
+};

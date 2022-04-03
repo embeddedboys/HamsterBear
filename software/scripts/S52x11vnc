@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# usbifup        Starts usb gadget rndis.
+#
+
+umask 077
+
+start() {
+        printf "Starting USB Gadget RNDIS: "
+        modprobe g_ether
+        ifconfig usb0 up
+        udhcpc -i usb0
+        echo "OK"
+}
+stop() {
+        printf "Stopping USB Gadget RNDIS: "
+        rmmod g_ether
+        echo "OK"
+}
+restart() {
+        stop
+        start
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        restart
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?

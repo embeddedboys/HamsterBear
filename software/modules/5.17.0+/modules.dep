@@ -1,0 +1,11 @@
+kernel/crypto/echainiv.ko:
+kernel/drivers/video/backlight/lcd.ko:
+kernel/drivers/net/mii.ko:
+kernel/drivers/net/usb/rtl8150.ko:
+kernel/drivers/usb/gadget/legacy/g_ether.ko:
+kernel/drivers/usb/gadget/legacy/g_ffs.ko:
+kernel/drivers/usb/gadget/legacy/g_mass_storage.ko:
+kernel/drivers/usb/gadget/legacy/g_serial.ko:
+kernel/drivers/usb/mon/usbmon.ko:
+kernel/drivers/input/touchscreen/goodix_ts.ko:
+kernel/drivers/cpufreq/mediatek-cpufreq-hw.ko:
