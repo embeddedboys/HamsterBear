@@ -1,7 +1,16 @@
 site_name: HamsterBear
+site_url: https://embeddedboys.github.io/HamsterBear/
+site_description: offical site of HamsterBear
+site_author: IotaHydrae
+
+repo_url: https://github.com/embeddedboys/HamsterBear
+edit_uri: edit/main/docs/docs/
+
 theme:
   name: null
   custom_dir: 'cinder'
+  # name: material
+  locale: en
 
 nav:
     - 主页: index.md

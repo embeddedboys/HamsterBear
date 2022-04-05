@@ -1,15 +1,22 @@
-# Wiki of HamsterBear
 
-## 介绍
+# ![Hamster](assets/hamster_64.png) 仓鼠熊 HamsterBear
 ------
 
-[`HamsterBear`]() 是基于[`Allwinner`](https://www.allwinnertech.com/)（全志科技）[`F1C200s`]() SoC设计的嵌入式Linux开发板，他在3x5cm大小的pcb上集成了众多功能，
+官方网站:
+[`https://embeddedboys.github.io/HamsterBear`](https://embeddedboys.github.io/HamsterBear)
 
-本项目的官方网站:
-[`embeddedboys.github.io/HamsterBear`](embeddedboys.github.io/HamsterBear)
+仓库地址:
+[`https://github.com/embeddedboys/HamsterBear`](https://github.com/embeddedboys/HamsterBear)
+
+![HamsterBear](assets/hamsterbear_real.jpg "HamsterBear")
+
+[**`HamsterBear(仓鼠熊)`**]() 是基于[`Allwinner（全志科技）`](https://www.allwinnertech.com/)[`F1C200s`]() SoC 设计的嵌入式 Linux 开发板，我们在 `3x5cm` 尺寸上的PCB集成了众多功能，并且采用了M.2接口，方便开发多种多样的底板。
+
+为了让其更加生动形象，我们给`HamsterBear`的底板取了个外号叫做**`履带(Track)`**，这是我们给它设计的第一款底板
+![HamsterBear Track Wireless](assets/hamsterbear_track_wireless_top.png "HamsterBear Track Wireless")
 
 
-## 硬件参数
+## 软件配置
 ------
 
 * `SoC` : F1C200s arm926-ejs
@@ -26,15 +33,28 @@
 
 ## 工程结构
 ------
-    Documentation/                 # 文档目录
-        NixieClockLite/            # 本站工程
+    docs/                           # 本站工程
         
-    hardware/                      # 有关硬件的部分
+    hardware/                       # 有关硬件设计的部分
+        core/                       # 核心板
+        datasheets/                 # 芯片手册
+        tracks/                     # 底板
 
-    references/                    # 本项目参考的内容
+    software/                       # 有关软件设计的部分
+        bootable/                   # 可启动文件
+        bsp/                        # 项目的最小系统工程
+            u-boot/                 # u-boot工程
+            linux/                  # linux工程
+            buildroot/              # buildroot工程
+            toolchain/              # 交叉编译工具链
 
-    .gitignore                     # git忽略文件
-    LICENSE                        # 许可证
+        modules/                    # 外部的驱动程序
+        packages/                   # 外部的应用软件
+        scripts/                    # 脚本
+
+    references/                    # 本项目所参考的内容
+
+    LICENSE                        # 本项目的许可证
     README.md                      # 项目自述文件
 
 ## 说明
@@ -45,3 +65,5 @@
 
 ## FAQ
 ------
+
+#### 1. 酷，我接下来应该做什么？
