@@ -5,6 +5,9 @@
 
 [`HamsterBear`]() 是基于[`Allwinner`](https://www.allwinnertech.com/)（全志科技）[`F1C200s`]() SoC设计的嵌入式Linux开发板，他在3x5cm大小的pcb上集成了众多功能，
 
+本项目的官方网站:
+[`embeddedboys.github.io/HamsterBear`](embeddedboys.github.io/HamsterBear)
+
 
 ## 硬件参数
 ------
