@@ -3,14 +3,22 @@
 ## 介绍
 ------
 
-HamsterBear 是基于Allwinner（全志科技）F1C200s SoC设计的嵌入式Linux开发板，
+[`HamsterBear`]() 是基于[`Allwinner`](https://www.allwinnertech.com/)（全志科技）[`F1C200s`]() SoC设计的嵌入式Linux开发板，他在3x5cm大小的pcb上集成了众多功能，
 
 
 ## 硬件参数
 ------
-* `SoC`  - F1C200s arm926-ejs
+
+* `SoC` : F1C200s arm926-ejs
+
+
 * `Kernel` - mainline v5.17
-* `U-Boot` - mainline 
+
+
+* `U-Boot` - mainline v2022.2
+
+
+* `Buildroot` - v2022.2
 
 
 ## 工程结构

@@ -1,6 +1,9 @@
 site_name: HamsterBear
 theme:
-  name: readthedocs
+  name: material
+
+plugins: ['search']
+
 nav:
     - 主页: index.md
     - '用户向导':

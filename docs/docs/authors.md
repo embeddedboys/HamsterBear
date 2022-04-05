@@ -1,7 +1,7 @@
 # 作者
 ------
 
-* `IotaHydrae` - 工程创立者
+* `IotaHydrae` - 工程创建
 
 * `IotaHydrae` - 原理图
 
@@ -10,6 +10,8 @@
 * `IotaHydrae` - 零件清单
 
 * `IotaHydrae` - 设计图
+
+* `IotaHydrae` - BSP
 
 * `IotaHydrae` - 驱动程序设计
 
