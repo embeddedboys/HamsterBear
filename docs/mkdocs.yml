@@ -1,8 +1,7 @@
 site_name: HamsterBear
 theme:
-  name: material
-
-plugins: ['search']
+  name: null
+  custom_dir: 'cinder'
 
 nav:
     - 主页: index.md
