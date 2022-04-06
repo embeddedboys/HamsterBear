@@ -17,8 +17,8 @@ nav:
     - '用户向导':
       - '快速上手': howtouse.md
     - 使用文档:
-      - '硬件文档': howtouse.md
-      - '软件文档': howtouse.md
+      - '硬件文档': hardware/index.md
+      - '软件文档': software/index.md
     - 关于: 
         - '作者': authors.md
         - '许可证': license.md
