@@ -2894,6 +2894,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
     height: auto!important;
     padding-bottom: 0;
     overflow: visible!important;
+    background-color: #ff6600;
 }
 .navbar-collapse.in {
     overflow-y: visible;
