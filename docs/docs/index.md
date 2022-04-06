@@ -12,7 +12,7 @@
 
 [**`HamsterBear(仓鼠熊)`**]() 是基于[`Allwinner（全志科技）`](https://www.allwinnertech.com/)[`F1C200s`]() SoC 设计的嵌入式 Linux 开发板，我们在 `3x5cm` 尺寸上的PCB集成了众多功能，并且采用了M.2接口，方便开发多种多样的底板。
 
-为了让其更加生动形象，我们给`HamsterBear`的底板取了个外号叫做**`履带(Track)`**，这是我们给它设计的第一款底板 `HamsterBear Track Wireless`
+为了让其更加生动形象，我们给`HamsterBear`的底板取了个外号叫做**`履带(Track)`**，这是我们给它设计的第一款底板 **`HamsterBear Track Wireless`**
 ![HamsterBear Track Wireless](assets/hamsterbear_track_wireless_top.png "HamsterBear Track Wireless")
 
 
@@ -72,4 +72,4 @@
 ------
 
 #### 1. 酷，我接下来应该做什么？
-`快速入门` 章节里介绍了基本的用法，更详细的用法位于 `开发者->软、硬件文档`
+**`用户向导 -> 快速上手`** 章节里介绍了基本的用法，更详细的用法位于 **`使用文档`** 中
