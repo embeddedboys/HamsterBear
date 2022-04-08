@@ -1,0 +1,663 @@
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index e41eca79c..8ac409f25 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1317,7 +1317,8 @@ dtb-$(CONFIG_MACH_SUN9I) += \
+ 	sun9i-a80-optimus.dtb \
+ 	sun9i-a80-cubieboard4.dtb
+ dtb-$(CONFIG_MACH_SUNIV) += \
+-	suniv-f1c100s-licheepi-nano.dtb
++	suniv-f1c100s-licheepi-nano.dtb \
++	suniv-f1c100s-hamsterbear-track-wireless.dtb
+ dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += \
+ 	tegra20-acer-a500-picasso.dtb \
+ 	tegra20-asus-tf101.dtb \
+diff --git a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts
+index a1154e6c7..5e4db6dd5 100644
+--- a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts
++++ b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts
+@@ -6,17 +6,77 @@
+ /dts-v1/;
+ #include "suniv-f1c100s.dtsi"
+ 
++#include <dt-bindings/gpio/gpio.h>
++
+ / {
+ 	model = "Lichee Pi Nano";
+ 	compatible = "licheepi,licheepi-nano", "allwinner,suniv-f1c100s";
+ 
+ 	aliases {
+ 		serial0 = &uart0;
++		//serial1 = &uart1;
++		i2c0 = &i2c0;
++		spi0 = &spi0;
++		spi1 = &spi1;
+ 	};
+ 
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
++
++        reg_vcc3v3: vcc3v3 {
++                compatible = "regulator-fixed";
++                regulator-name = "vcc3v3";
++                regulator-min-microvolt = <3300000>;
++                regulator-max-microvolt = <3300000>;
++        };
++/*
++	lradc: lradc@1c23400 {
++		compatible = "allwinner,sun4i-a10-lradc-keys";
++	        reg = <0x01c23400 0x100>;
++        	interrupts = <22>;
++	        vref-supply = <&reg_vcc3v3>;
++
++	        button-132 {
++        	    label = "PRE";
++	            linux,code = <105>;
++	            channel = <0>;
++	            voltage = <1396825>;
++	        };
++
++	        button-196 {
++	            label = "NEXT";
++	            linux,code = <106>;
++	            channel = <0>;
++	            voltage = <1955555>;
++       		};
++
++	        button-233 {
++	            label = "OK";
++	            linux,code = <28>;
++	            channel = <0>;
++	            voltage = <233000>;
++       		};
++
++	        button-271 {
++	            label = "BACK";
++	            linux,code = <14>;
++	            channel = <0>;
++	            voltage = <271300>;
++       		};
++	};
++*/
++	lradc: lradc@1c23400 {
++		compatible = "allwinner,suniv-f1c100s-lradc-keys";
++	        reg = <0x01c23400 0x100>;
++        	interrupts = <22>;
++	        vref-supply = <&reg_vcc3v3>;
++	};
++
++};
++
++&dma {
++	status = "okay";
+ };
+ 
+ &uart0 {
+@@ -24,3 +84,89 @@
+ 	pinctrl-0 = <&uart0_pe_pins>;
+ 	status = "okay";
+ };
++
++/*
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart1_pa_pins>;
++	status = "disabled";
++};
++*/
++
++&i2c0 {
++	pinctl-names = "default";
++	pinctrl-0 = <&i2c0_pe_pins>;
++	status = "okay";
++	i2c-max-frequency = <400000>;
++};
++
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pc_pins>;
++	status = "disabled";
++	spi-max-frequency = <50000000>;
++};
++
++&spi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi1_pa_pins>;
++	status = "okay";
++        spi-max-frequency = <50000000>;
++
++	st7789v: st7789v@0 {
++                #address-cells = <1>;
++                #size-cells = <1>;
++                compatible = "sitronix,st7789v";
++                reg = <0>;
++                spi-max-frequency = <50000000>;
++                rgb;
++                buswidth = <8>;
++                rotate = <90>;
++                fps = <60>;
++                spi-cpol;
++                spi-cpha;
++                reset-gpios = <&pio 4 10 GPIO_ACTIVE_HIGH>;
++                dc-gpios = <&pio 4 11 GPIO_ACTIVE_LOW>;
++                debug = <1>;
++        };
++
++/*
++	ssd1306: ssd1306@0 {
++                #address-cells = <1>;
++                #size-cells = <1>;
++                compatible = "solomon,ssd1306";
++                reg = <0>;
++                spi-max-frequency = <50000000>;
++                buswidth = <8>;
++                rotate = <0>;
++                fps = <60>;
++                spi-cpol;
++                spi-cpha;
++                reset-gpios = <&pio 4 9 GPIO_ACTIVE_HIGH>;
++                dc-gpios = <&pio 4 10 GPIO_ACTIVE_LOW>;
++                debug = <1>;
++        };
++
++*/
++};
++
++&mmc0 {
++	vmmc-supply = <&reg_vcc3v3>;
++	bus-width = <4>;
++	broken-cd;
++	status = "okay";
++};
++
++&otg_sram {
++        status = "okay";
++};
++
++&usb_otg {
++        dr_mode = "otg";
++        status = "okay";
++};
++
++&usbphy {
++        usb0_id_det-gpio = <&pio 4 2 GPIO_ACTIVE_HIGH>; /* PE2 */
++        status = "okay";
++};
+diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+index 6100d3b75..ed162dd04 100644
+--- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
++++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+@@ -4,6 +4,9 @@
+  * Copyright 2018 Mesih Kilinc <mesihkilinc@gmail.com>
+  */
+ 
++#include <dt-bindings/clock/suniv-ccu-f1c100s.h>
++#include <dt-bindings/reset/suniv-ccu-f1c100s.h>
++
+ / {
+ 	#address-cells = <1>;
+ 	#size-cells = <1>;
+@@ -62,6 +65,57 @@
+ 			};
+ 		};
+ 
++		dma: dma-controller@1c02000 {
++			compatible = "allwinner,suniv-f1c100s-dma";
++			reg = <0x01c02000 0x1000>;
++			interrupts = <18>;
++			clocks  = <&ccu CLK_BUS_DMA>;
++			//clock-names = "ahb", "mod";
++			resets = <&ccu RST_BUS_DMA>;
++			status = "disabled";
++			#dma-cells = <1>;
++		};
++
++		i2c0: i2c@1c27000 {
++			compatible = "allwinner,sun4i-a10-i2c";
++			reg = <0x01C27000 0x1000>;
++			interrupts  = <7>;
++			clocks = <&ccu CLK_BUS_I2C0>, <&ccu CLK_BUS_I2C0>;
++			clock-names = "ahb", "mod";
++			resets = <&ccu RST_BUS_I2C0>;
++			status = "disabled";
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
++                spi0: spi@1c05000 {
++                        compatible = "allwinner,sun8i-h3-spi";
++                        reg = <0x01c05000 0x1000>;
++                        interrupts = <10>;
++                        clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_BUS_SPI0>;
++                        clock-names = "ahb", "mod";
++			dmas = <&dma 0x04>, <&dma 0x04>;
++                        dma-names = "rx", "tx";
++                        resets = <&ccu RST_BUS_SPI0>;
++                        status = "disabled";
++                        #address-cells = <1>;
++                        #size-cells = <0>;
++                };
++
++                spi1: spi@1c06000 {
++                        compatible = "allwinner,sun8i-h3-spi";
++                        reg = <0x01c06000 0x1000>;
++                        interrupts = <11>;
++                        clocks = <&ccu CLK_BUS_SPI1>, <&ccu CLK_BUS_SPI1>;
++                        clock-names = "ahb", "mod";
++			dmas = <&dma 0x05>, <&dma 0x05>;
++                        dma-names = "rx", "tx";
++                        resets = <&ccu RST_BUS_SPI1>;
++                        status = "disabled";
++                        #address-cells = <1>;
++                        #size-cells = <0>;
++                };
++
+ 		ccu: clock@1c20000 {
+ 			compatible = "allwinner,suniv-f1c100s-ccu";
+ 			reg = <0x01c20000 0x400>;
+@@ -78,6 +132,54 @@
+ 			#interrupt-cells = <1>;
+ 		};
+ 
++		mmc0: mmc@1c0f000 {
++			compatible = "allwinner,suniv-f1c100s-mmc",
++					"allwinner,sun7i-a20-mmc";
++			reg = <0x01c0f000 0x1000>;
++			clocks = <&ccu CLK_BUS_MMC0>,
++				<&ccu CLK_MMC0>,
++				<&ccu CLK_MMC0_OUTPUT>,
++				<&ccu CLK_MMC0_SAMPLE>;
++			clock-names = "ahb",
++				"mmc",
++				"output",
++				"sample";
++			resets = <&ccu RST_BUS_MMC0>;
++			reset-names = "ahb";
++			interrupts = <23>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&mmc0_pins>;
++			status = "disabled";
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
++		usb_otg: usb@1c13000 {
++			compatible = "allwinner,suniv-musb";
++			reg = <0x01c13000 0x0400>;
++			clocks = <&ccu CLK_BUS_OTG>;
++			resets = <&ccu RST_BUS_OTG>;
++			interrupts = <26>;
++			interrupt-names = "mc";
++			phys = <&usbphy 0>;
++			phy-names = "usb";
++			extcon = <&usbphy 0>;
++			allwinner,sram = <&otg_sram 1>;
++			status = "disabled";
++		};
++
++		usbphy: phy@1c13400 {
++			compatible = "allwinner,suniv-usb-phy";
++			reg = <0x01c13400 0x10>;
++			reg-names = "phy_ctrl";
++			clocks = <&ccu CLK_USB_PHY0>;
++			clock-names = "usb0_phy";
++			resets = <&ccu RST_USB_PHY0>;
++			reset-names = "usb0_reset";
++			#phy-cells = <1>;
++			status = "disabled";
++		};
++
+ 		pio: pinctrl@1c20800 {
+ 			compatible = "allwinner,suniv-f1c100s-pinctrl";
+ 			reg = <0x01c20800 0x400>;
+@@ -93,6 +195,33 @@
+ 				pins = "PE0", "PE1";
+ 				function = "uart0";
+ 			};
++/*
++			uart1_pa_pins: uart1-pa-pins {
++				pins = "PA2", "PA3";
++				function = "uart1";
++			};
++*/
++			i2c0_pe_pins: i2c0-pe-pins {
++				pins = "PE11", "PE12";
++				function = "i2c0";
++			};
++
++                        spi0_pc_pins: spi0-pc-pins {
++                                pins = "PC0", "PC1", "PC2", "PC3";
++                                function = "spi0";
++                        };
++
++
++                        spi1_pa_pins: spi1-pa-pins {
++                                pins = "PA0", "PA1", "PA2", "PA3";
++                                function = "spi1";
++                        };
++
++                        mmc0_pins: mmc0-pins {
++                                pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
++                                function = "mmc0";
++                        };
++
+ 		};
+ 
+ 		timer@1c20c00 {
+diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+index 6bcdb4e6a..cd9e81c1f 100644
+--- a/drivers/dma/Kconfig
++++ b/drivers/dma/Kconfig
+@@ -153,8 +153,8 @@ config DMA_SA11X0
+ 
+ config DMA_SUN4I
+ 	tristate "Allwinner A10 DMA SoCs support"
+-	depends on MACH_SUN4I || MACH_SUN5I || MACH_SUN7I
+-	default (MACH_SUN4I || MACH_SUN5I || MACH_SUN7I)
++	depends on MACH_SUN4I || MACH_SUN5I || MACH_SUN7I || MACH_SUNIV
++	default (MACH_SUN4I || MACH_SUN5I || MACH_SUN7I || MACH_SUNIV)
+ 	select DMA_ENGINE
+ 	select DMA_VIRTUAL_CHANNELS
+ 	help
+diff --git a/drivers/dma/sun6i-dma.c b/drivers/dma/sun6i-dma.c
+index 5cadd4d2b..8207fd330 100644
+--- a/drivers/dma/sun6i-dma.c
++++ b/drivers/dma/sun6i-dma.c
+@@ -1243,6 +1243,7 @@ static struct sun6i_dma_config sun8i_v3s_dma_cfg = {
+ };
+ 
+ static const struct of_device_id sun6i_dma_match[] = {
++	{ .compatible = "allwinner,suniv-f1c100s-dma", .data = &sun6i_a31_dma_cfg },
+ 	{ .compatible = "allwinner,sun6i-a31-dma", .data = &sun6i_a31_dma_cfg },
+ 	{ .compatible = "allwinner,sun8i-a23-dma", .data = &sun8i_a23_dma_cfg },
+ 	{ .compatible = "allwinner,sun8i-a83t-dma", .data = &sun8i_a83t_dma_cfg },
+diff --git a/drivers/input/keyboard/sun4i-lradc-keys.c b/drivers/input/keyboard/sun4i-lradc-keys.c
+index 4a796bed4..82a94ab95 100644
+--- a/drivers/input/keyboard/sun4i-lradc-keys.c
++++ b/drivers/input/keyboard/sun4i-lradc-keys.c
+@@ -111,6 +111,7 @@ static irqreturn_t sun4i_lradc_irq(int irq, void *dev_id)
+ 	if ((ints & CHAN0_KEYDOWN_IRQ) && lradc->chan0_keycode == 0) {
+ 		val = readl(lradc->base + LRADC_DATA0) & 0x3f;
+ 		voltage = val * lradc->vref / 63;
++		printk(KERN_WARNING "adckey val: %d, voltage: %d\n", val, voltage);
+ 
+ 		for (i = 0; i < lradc->chan0_map_count; i++) {
+ 			diff = abs(lradc->chan0_map[i].voltage - voltage);
+diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c b/drivers/phy/allwinner/phy-sun4i-usb.c
+index 788dd5cdb..44dcffa7f 100644
+--- a/drivers/phy/allwinner/phy-sun4i-usb.c
++++ b/drivers/phy/allwinner/phy-sun4i-usb.c
+@@ -99,6 +99,7 @@
+ #define POLL_TIME			msecs_to_jiffies(250)
+ 
+ enum sun4i_usb_phy_type {
++	suniv_phy,
+ 	sun4i_a10_phy,
+ 	sun6i_a31_phy,
+ 	sun8i_a33_phy,
+@@ -857,6 +858,14 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
++static const struct sun4i_usb_phy_cfg suniv_cfg = {
++	.num_phys = 1,
++	.type = suniv_phy,
++	.disc_thresh = 3,
++	.phyctl_offset = REG_PHYCTL_A10,
++	.dedicated_clocks = true,
++};
++
+ static const struct sun4i_usb_phy_cfg sun4i_a10_cfg = {
+ 	.num_phys = 3,
+ 	.type = sun4i_a10_phy,
+@@ -970,6 +979,7 @@ static const struct sun4i_usb_phy_cfg sun50i_h6_cfg = {
+ };
+ 
+ static const struct of_device_id sun4i_usb_phy_of_match[] = {
++	{ .compatible = "allwinner,suniv-usb-phy", .data = &suniv_cfg },
+ 	{ .compatible = "allwinner,sun4i-a10-usb-phy", .data = &sun4i_a10_cfg },
+ 	{ .compatible = "allwinner,sun5i-a13-usb-phy", .data = &sun5i_a13_cfg },
+ 	{ .compatible = "allwinner,sun6i-a31-usb-phy", .data = &sun6i_a31_cfg },
+diff --git a/drivers/pinctrl/sunxi/pinctrl-suniv-f1c100s.c b/drivers/pinctrl/sunxi/pinctrl-suniv-f1c100s.c
+index 2801ca706..68a5b627f 100644
+--- a/drivers/pinctrl/sunxi/pinctrl-suniv-f1c100s.c
++++ b/drivers/pinctrl/sunxi/pinctrl-suniv-f1c100s.c
+@@ -204,7 +204,7 @@ static const struct sunxi_desc_pin suniv_f1c100s_pins[] = {
+ 		  SUNXI_FUNCTION(0x0, "gpio_in"),
+ 		  SUNXI_FUNCTION(0x1, "gpio_out"),
+ 		  SUNXI_FUNCTION(0x2, "lcd"),		/* D20 */
+-		  SUNXI_FUNCTION(0x3, "lvds1"),		/* RX */
++		  SUNXI_FUNCTION(0x3, "uart2"),		/* RX */
+ 		  SUNXI_FUNCTION_IRQ_BANK(0x6, 0, 14)),
+ 	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 15),
+ 		  SUNXI_FUNCTION(0x0, "gpio_in"),
+diff --git a/drivers/spi/spi-sun6i.c b/drivers/spi/spi-sun6i.c
+index 23ad05252..93f59e886 100644
+--- a/drivers/spi/spi-sun6i.c
++++ b/drivers/spi/spi-sun6i.c
+@@ -272,6 +272,7 @@ static int sun6i_spi_transfer_one(struct spi_master *master,
+ 	sspi->rx_buf = tfr->rx_buf;
+ 	sspi->len = tfr->len;
+ 	use_dma = master->can_dma ? master->can_dma(master, spi, tfr) : false;
++	use_dma = false;
+ 
+ 	/* Clear pending interrupts */
+ 	sun6i_spi_write(sspi, SUN6I_INT_STA_REG, ~0);
+@@ -699,6 +700,7 @@ static int sun6i_spi_remove(struct platform_device *pdev)
+ static const struct of_device_id sun6i_spi_match[] = {
+ 	{ .compatible = "allwinner,sun6i-a31-spi", .data = (void *)SUN6I_FIFO_DEPTH },
+ 	{ .compatible = "allwinner,sun8i-h3-spi",  .data = (void *)SUN8I_FIFO_DEPTH },
++	{ .compatible = "allwinner,suniv-spi",  .data = (void *)SUN8I_FIFO_DEPTH },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, sun6i_spi_match);
+diff --git a/drivers/staging/fbtft/fb_st7789v.c b/drivers/staging/fbtft/fb_st7789v.c
+index 861a15414..20cbe4f9c 100644
+--- a/drivers/staging/fbtft/fb_st7789v.c
++++ b/drivers/staging/fbtft/fb_st7789v.c
+@@ -140,6 +140,8 @@ static int init_tearing_effect_line(struct fbtft_par *par)
+  *
+  * Return: 0 on success, < 0 if error occurred.
+  */
++
++#if 0
+ static int init_display(struct fbtft_par *par)
+ {
+ 	int rc;
+@@ -216,6 +218,45 @@ static int init_display(struct fbtft_par *par)
+ 
+ 	return 0;
+ }
++#endif
++
++static int init_display(struct fbtft_par *par)
++{
++        par->fbtftops.reset(par);
++	mdelay(50);
++	//************* Start Initial Sequence **********//
++write_reg(par, 0x11); //Sleep out
++mdelay(120);     //Delay 120ms
++//************* Start Initial Sequence **********//
++write_reg(par, 0x36, 0x00);
++
++write_reg(par, 0x3A, 0x05);
++
++write_reg(par, 0xB2,0x0C,0x0C,0x00,0x33,0x33);
++
++write_reg(par, 0xB7,0x35);
++
++write_reg(par, 0xBB, 0x32);     //Vcom=1.35V
++
++write_reg(par, 0xC2, 0x01);
++
++write_reg(par, 0xC3,0x15);     //GVDD=4.8V
++
++write_reg(par, 0xC4, 0x20);     //VDV, 0x20:0v
++
++write_reg(par, 0xC6,0x0F);    //0x0F:60Hz
++
++write_reg(par, 0xD0, 0xA4, 0xA1);
++
++write_reg(par, 0xE0,0xD0,0x08,0x0E,0x09,0x09,0x05,0x31,0x33,0x48,0x17,0x14,0x15,0x31,0x34);
++
++write_reg(par, 0xE1,0xD0,0x08,0x0E,0x09,0x09,0x15,0x31,0x33,0x48,0x17,0x14,0x15,0x31,0x34);
++
++write_reg(par, 0x21);
++
++write_reg(par, 0x29);
++	return 0;
++}
+ 
+ /*
+  * write_vmem() - write data to display.
+@@ -369,7 +410,7 @@ static int blank(struct fbtft_par *par, bool on)
+ static struct fbtft_display display = {
+ 	.regwidth = 8,
+ 	.width = 240,
+-	.height = 320,
++	.height = 280,
+ 	.gamma_num = 2,
+ 	.gamma_len = 14,
+ 	.gamma = HSD20_IPS_GAMMA,
+diff --git a/drivers/staging/fbtft/fbtft-core.c b/drivers/staging/fbtft/fbtft-core.c
+index f2684d2d6..665c3d142 100644
+--- a/drivers/staging/fbtft/fbtft-core.c
++++ b/drivers/staging/fbtft/fbtft-core.c
+@@ -24,7 +24,8 @@
+ #include <linux/platform_device.h>
+ #include <linux/property.h>
+ #include <linux/spinlock.h>
+-
++#include <linux/of.h>
++#include <linux/of_gpio.h>
+ #include <video/mipi_display.h>
+ 
+ #include "fbtft.h"
+@@ -74,17 +75,42 @@ static int fbtft_request_one_gpio(struct fbtft_par *par,
+ 				  const char *name, int index,
+ 				  struct gpio_desc **gpiop)
+ {
+-	struct device *dev = par->info->device;
+-
+-	*gpiop = devm_gpiod_get_index_optional(dev, name, index,
+-					       GPIOD_OUT_LOW);
+-	if (IS_ERR(*gpiop))
+-		return dev_err_probe(dev, PTR_ERR(*gpiop), "Failed to request %s GPIO\n", name);
++        struct device *dev = par->info->device;
++        struct device_node *node = dev->of_node;
++        int gpio, flags, ret = 0;
++        enum of_gpio_flags of_flags;
++
++        if (of_find_property(node, name, NULL)) {
++                gpio = of_get_named_gpio_flags(node, name, index, &of_flags);
++                if (gpio == -ENOENT)
++                        return 0;
++                if (gpio == -EPROBE_DEFER)
++                        return gpio;
++                if (gpio < 0) {
++                        dev_err(dev,
++                                "failed to get '%s' from DT\n", name);
++                        return gpio;
++                }
++
++                /* active low translates to initially low */
++                flags = (of_flags & OF_GPIO_ACTIVE_LOW) ? GPIOF_OUT_INIT_LOW :
++                                                        GPIOF_OUT_INIT_HIGH;
++                ret = devm_gpio_request_one(dev, gpio, flags,
++                                            dev->driver->name);
++                if (ret) {
++                        dev_err(dev,
++                                "gpio_request_one('%s'=%d) failed with %d\n",
++                                name, gpio, ret);
++                        return ret;
++                }
++                if (gpiop)
++                        *gpiop = gpio_to_desc(gpio);
++                fbtft_par_dbg(DEBUG_REQUEST_GPIOS, par, "%s: '%s' = GPIO%d\n",
++                              __func__, name, gpio);
++        }
++
++        return ret;
+ 
+-	fbtft_par_dbg(DEBUG_REQUEST_GPIOS, par, "%s: '%s' GPIO\n",
+-		      __func__, name);
+-
+-	return 0;
+ }
+ 
+ static int fbtft_request_gpios(struct fbtft_par *par)
+@@ -92,10 +118,10 @@ static int fbtft_request_gpios(struct fbtft_par *par)
+ 	int i;
+ 	int ret;
+ 
+-	ret = fbtft_request_one_gpio(par, "reset", 0, &par->gpio.reset);
++	ret = fbtft_request_one_gpio(par, "reset-gpios", 0, &par->gpio.reset);
+ 	if (ret)
+ 		return ret;
+-	ret = fbtft_request_one_gpio(par, "dc", 0, &par->gpio.dc);
++	ret = fbtft_request_one_gpio(par, "dc-gpios", 0, &par->gpio.dc);
+ 	if (ret)
+ 		return ret;
+ 	ret = fbtft_request_one_gpio(par, "rd", 0, &par->gpio.rd);
+@@ -203,6 +229,9 @@ EXPORT_SYMBOL(fbtft_register_backlight);
+ static void fbtft_set_addr_win(struct fbtft_par *par, int xs, int ys, int xe,
+ 			       int ye)
+ {
++	xs = xs + 20;
++	xe = xe + 20;
++
+ 	write_reg(par, MIPI_DCS_SET_COLUMN_ADDRESS,
+ 		  (xs >> 8) & 0xFF, xs & 0xFF, (xe >> 8) & 0xFF, xe & 0xFF);
+ 
+@@ -216,15 +245,13 @@ static void fbtft_reset(struct fbtft_par *par)
+ {
+ 	if (!par->gpio.reset)
+ 		return;
+-
+ 	fbtft_par_dbg(DEBUG_RESET, par, "%s()\n", __func__);
+-
+ 	gpiod_set_value_cansleep(par->gpio.reset, 1);
+-	usleep_range(20, 40);
++	msleep(10);
+ 	gpiod_set_value_cansleep(par->gpio.reset, 0);
+-	msleep(120);
+-
+-	gpiod_set_value_cansleep(par->gpio.cs, 1);  /* Activate chip */
++	msleep(200);
++	gpiod_set_value_cansleep(par->gpio.reset, 1);
++	msleep(10);
+ }
+ 
+ static void fbtft_update_display(struct fbtft_par *par, unsigned int start_line,
+diff --git a/drivers/usb/musb/sunxi.c b/drivers/usb/musb/sunxi.c
+index 961c858fb..85542d15b 100644
+--- a/drivers/usb/musb/sunxi.c
++++ b/drivers/usb/musb/sunxi.c
+@@ -722,14 +722,16 @@ static int sunxi_musb_probe(struct platform_device *pdev)
+ 	INIT_WORK(&glue->work, sunxi_musb_work);
+ 	glue->host_nb.notifier_call = sunxi_musb_host_notifier;
+ 
+-	if (of_device_is_compatible(np, "allwinner,sun4i-a10-musb"))
++	if (of_device_is_compatible(np, "allwinner,sun4i-a10-musb") ||
++	    of_device_is_compatible(np, "allwinner,suniv-musb"))
+ 		set_bit(SUNXI_MUSB_FL_HAS_SRAM, &glue->flags);
+ 
+ 	if (of_device_is_compatible(np, "allwinner,sun6i-a31-musb"))
+ 		set_bit(SUNXI_MUSB_FL_HAS_RESET, &glue->flags);
+ 
+ 	if (of_device_is_compatible(np, "allwinner,sun8i-a33-musb") ||
+-	    of_device_is_compatible(np, "allwinner,sun8i-h3-musb")) {
++	    of_device_is_compatible(np, "allwinner,sun8i-h3-musb") ||
++	    of_device_is_compatible(np, "allwinner,suniv-musb")) {
+ 		set_bit(SUNXI_MUSB_FL_HAS_RESET, &glue->flags);
+ 		set_bit(SUNXI_MUSB_FL_NO_CONFIGDATA, &glue->flags);
+ 	}
+@@ -822,6 +824,7 @@ static int sunxi_musb_remove(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id sunxi_musb_match[] = {
++	{ .compatible = "allwinner,suniv-musb", },
+ 	{ .compatible = "allwinner,sun4i-a10-musb", },
+ 	{ .compatible = "allwinner,sun6i-a31-musb", },
+ 	{ .compatible = "allwinner,sun8i-a33-musb", },
