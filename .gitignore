@@ -1,0 +1,8 @@
+*.o
+*.ko
+*.tar
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.so
+*.out
