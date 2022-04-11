@@ -4,3 +4,7 @@
 拷贝hamsterbear_kernel_defconfig至arch/arm/configs/下
 执行ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- make hamsterbear_kernel_defconfig
 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- make zImage -j12
+
+## 源码获取
+
+
