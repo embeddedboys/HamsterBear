@@ -15,13 +15,13 @@ function do_install_toolchain()
 {
 	echo "Installing toolchain to $1"
 	if [ -d $1 ]; then
-		tar xJvf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz -C $1
+		sudo tar xJvf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabi.tar.xz -C $1
 	else
 		exit -1
 	fi
 }
 
-wget_remote https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
+wget_remote https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabi/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabi.tar.xz
 
 # echo $?
 
