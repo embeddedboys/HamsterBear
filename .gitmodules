@@ -1,0 +1,3 @@
+[submodule "software/packages/HamsterBearDesktop"]
+	path = software/packages/HamsterBearDesktop
+	url = https://github.com/embeddedboys/HamsterBearDesktop
