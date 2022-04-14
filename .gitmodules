@@ -1,6 +1,0 @@
-[submodule "software/packages/HamsterBearDesktop"]
-	path = software/packages/HamsterBearDesktop
-	url = https://github.com/embeddedboys/HamsterBearDesktop
-[submodule "software/packages/InfoNES/arm-NES-linux"]
-	path = software/packages/InfoNES/arm-NES-linux
-	url = https://github.com/nejidev/arm-NES-linux
