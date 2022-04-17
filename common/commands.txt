@@ -1,0 +1,356 @@
+# for f1cxx
+export ARCH=arm
+export CROSS_COMPILE=arm-linux-gnueabi-
+export PATH=$PATH:/opt/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabi/bin/
+
+INSTALL_MOD_PATH=./tmp make modules_install
+tar zcvf tmp.tgz tmp/
+gzip -dc tmp.tgz | tar xvf -
+modprobe g_mass_storage file=/dev/mmcblk0p1 stall=0 removable=1
+modprobe g_mass_storage file=/dev/mmcblk0p2 stall=0 removable=1
+
+这里说明下为什么erase 0x10000，因为这个flash erase block是64KB
+sf probe;sf erase 0 0x10000;reset
+这样擦除flash头部64KB，bootROM检测不到可引导固件，自动进入FEL模式。
+sf erase 0 0x1000000 # 16M 擦除
+    0.837769] input: 1c23400.lradc as /devices/platform/1c23400.lradc/input/input0
+
+sudo sunxi-fel -p spiflash-write 0x000000 u-boot-sunxi-with-spl.bin
+sudo sunxi-fel -p spiflash-write 0x100000 suniv-f1c100s-licheepi-nano-with-lcd.dtb
+sudo sunxi-fel -p spiflash-write 0x110000 zImage
+sudo sunxi-fel -p spiflash-write 0x510000 rootfs.jffs2
+
+mkfs.jffs2 -L -s 0x100 -e 0x10000 --pad=0xAF0000 -d rootfs/ -o jffs2.img
+
+#define CONFIG_BOOTCOMMAND   "sf probe 0 50000000; "                           \
+                             "sf read 0x80C00000 0x100000 0x4000; "  \
+                             "sf read 0x80008000 0x110000 0x400000; " \
+                             "bootz 0x80008000 - 0x80C00000"
+console=tty0 console=ttyS0,115200 panic=5 root=/dev/mtdblock3 rw rootfstype=jffs2 mem=31M
+
+
+# 对于mmc启动
+mkimage -C none -A arm -T script -d boot.cmd boot.scr
+mkimage -C none -A arm -T script -d hamsterbear-boot.cmd boot.scr
+
+cat <<EOT |sudo sfdisk tf_image
+1M,16M,c
+,,L
+EOT
+
+cat <<EOT |sudo sfdisk tf_image_1G
+1M,16M,c
+,,L
+EOT
+
+losetup -f tf_image
+
+partx -u /dev/loop25
+
+dd if=u-boot-sunxi-with-spl.bin of=/dev/loop25 bs=1024 seek=8
+dd if=u-boot-sunxi-with-spl.bin of=/dev/sdb bs=1K seek=8
+mount /dev/loop25p1 boot/
+mount /dev/loop25p2 rootfs/
+
+console=tty0 console=ttyS0,115200 panic=5 rw rootwait root=/dev/mmcblk0p2 mem=64M
+
+load mmc 0:1 0x80C00000 suniv-f1c100s-licheepi-nano-with-lcd.dtb
+load mmc 0:1 0x80008000 zImage
+bootz 0x80008000 - 0x80C00000
+
+/usr/sbin/debootstrap --foreign --arch armel bullseye \
+     rootfs https://repo.huaweicloud.com/debian
+
+LANG=C.UTF-8 chroot rootfs qemu-arm-static /bin/bash
+
+x11vnc -display :0  -rawfb map:/dev/fb0@280x240x16 -input KMBCF,M  -ncache 10 &
+x11vnc -display :0 -noshm -noxdamage -input KMBCF,M -ncache 10 &
+
+ffplay test.mp4 -x 280 -y 240 -an
+
+/usr/bin/Xorg :0.0 vt01 -s 0 -noreset -allowMouseOpenFail
+
+# for imx6ull
+export ARCH=arm
+export CROSS_COMPILE=arm-linux-gnueabihf-
+export PATH=$PATH:/home/book/100ask_imx6ull-sdk/Buildroot_2019.02/output/host/bin/
+
+[root@100ask:/sys/kernel/debug]# i2ctransfer -f -y 0 w2@0x50 0x00 0x13
+[root@100ask:/sys/kernel/debug]# i2ctransfer -f -y 0 w1@0x50 0x00 r1@0x50
+mount -t nfs -o nolock,vers=3,port=2049,mountport=9999 192.168.31.111:/home/book/nfs_rootfs /mnt
+
+lr里放的是中断前函数调用时下一条指令地址
+返回地址是中断发生时指令地址
+
+I'm using a USB device usually connected on /dev/ttyUSB0 Sometimes when there's more USB devices it goes to /dev/ttyUSB1 or others I've added a rule under /etc/udev/rules.d/myrule.rules with the following line:
+
+ 1664  sudo dpkg -i phddns_5.1.0_rapi_armhf.deb
+ 1665  phddns
+ 1666  phddns version
+ 1667  phddns status
+ 1668  phddns stop
+ 1669  sudo phddns stop
+ 1670  sudo phddns start
+ 1671  sudo phddns stop
+ 1672  phtunnel
+ 1673  phtunnel -h
+ 1674  vim /home/pi/phtunnel.json
+ 1675  phtunnel -l
+ 1676  phddns
+ 1677  phddns start
+ 1678  sudo phddns start
+ 1679  phtunnel
+ 1680  phddns status
+
+
+mount -t nfs 
+
+    CONFIGFS
+    Linux Configfs（CONFIG_CONFIGFS_FS）支持允许从用户空间完全动态配置小工具设备，在这种情况下，您可以使用drivers / usb / gadget / udc / functions中提供的一个或多个功能创建单个配置或多配置复合设备：
+
+    usb_f_acm - CDC Serial（ACM - 抽象控制模型）
+    usb_f_ecm - CDC以太网（ECM - 以太网网络控制模型）
+    usb_f_eem - CDC以太网（EEM - 以太网仿真模型）
+    usb_f_fs - 文件系统
+    usb_f_hid - HID接口
+    usb_f_mass_storage - USB海量存储类
+    usb_f_midi - MIDI
+    usb_f_ncm - CDC网络（NCM - 网络控制模型以太网）
+    usb_f_obex - CDC OBEX（对象交换模型）
+    usb_f_phonet - CDC Phonet
+    usb_f_printer - 打印机功能
+    usb_f_rndis - （远程网络驱动程序接口规范 - 基于USB的Microsoft以太网）
+    usb_f_serial - 通用串行功能
+    usb_f_subset - CDC子集（没有控制机制的以太网 - 只是原始数据传输）
+    usb_f_uac1 - USB音频类
+    usb_f_uac2 - USB Audio class 2.0
+    usb_f_uvc - USB视频课程
+    请注意，并非所有上述内核模块都可用，具体取决于您的内核配置或BSP。
+
+    例子：
+
+    创建CDC ACM串行设备：
+    #mount configfs
+    mount -t configfs none /sys/kernel/config
+    #load libcomposite module
+    modprobe libcomposite #cread
+    a gadget
+    mkdir / sys / kernel / config / usb_gadget / g1
+    ＃cd to configfs node
+    cd / sys / kernel / config / usb_gadget / g1
+    #configure it（如果USB Class用于驱动程序compat，vid / pid可以是任何东西）
+    echo 0xabcd> idVendor
+    echo 0x1234> idProduct #configure
+    its serial / mfg / product
+    mkdir strings / 0x409
+    echo myserial> strings / 0x409 / serialnumber
+    echo mymfg> strings / 0x409 / manufacturer
+    echo myproduct> strings / 0x409 / product #create
+    config
+    mkdir configs / c.1
+    ＃如果需要，配置属性
+    echo  120 > configs / c.1 / MaxPower
+    ＃确保函数加载
+    modprobe usb_f_acm
+    ＃创建函数（名称必须匹配usb_f_ <name>模块，如'acm'）
+    mkdir functions / acm.0 #assocate
+    function with config
+    ln -s functions / acm.0 configs / c.1 #enable
+    gadget通过绑定到UDC从/ sys / class / udc
+    echo  0000：01：00.0> UDC
+    ＃to unbind it：echo“”UDC; 睡1; rm -rf / sys / kernel / config / usb_gadget / g1
+
+#!/bin/sh
+#
+# sshd        Starts sshd.
+#
+
+# Make sure the ssh-keygen progam exists
+[ -f /usr/bin/ssh-keygen ] || exit 0
+
+umask 077
+
+start() {
+        psplash-write "PROGRESS 30"
+        # Create any missing keys
+        /usr/bin/ssh-keygen -A
+        psplash-write "PROGRESS 45"
+        printf "Starting sshd: "
+        /usr/sbin/sshd
+        touch /var/lock/sshd
+        echo "OK"
+}
+stop() {
+        printf "Stopping sshd: "
+        killall sshd
+        rm -f /var/lock/sshd
+        echo "OK"
+}
+restart() {
+        stop
+        start
+}
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        restart
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?
+
+
+static int init_display(struct fbtft_par *par)
+{
+        /* turn off sleep mode */
+        write_reg(par, MIPI_DCS_EXIT_SLEEP_MODE);
+        mdelay(120);
+
+        /* set pixel format to RGB-565 */
+        write_reg(par, MIPI_DCS_SET_PIXEL_FORMAT, MIPI_DCS_PIXEL_FMT_16BIT);
+
+        write_reg(par, PORCTRL, 0x08, 0x08, 0x00, 0x22, 0x22);
+
+        /*
+         * VGH = 13.26V
+         * VGL = -10.43V
+         */
+        write_reg(par, GCTRL, 0x35);
+
+        /*
+         * VDV and VRH register values come from command write
+         * (instead of NVM)
+         */
+        write_reg(par, VDVVRHEN, 0x01, 0xFF);
+
+        /*
+         * VAP =  4.1V + (VCOM + VCOM offset + 0.5 * VDV)
+         * VAN = -4.1V + (VCOM + VCOM offset + 0.5 * VDV)
+         */
+        write_reg(par, VRHS, 0x0B);
+
+        /* VDV = 0V */
+        write_reg(par, VDVS, 0x20);
+
+        /* VCOM = 0.9V */
+        write_reg(par, VCOMS, 0x20);
+
+        /* VCOM offset = 0V */
+        write_reg(par, VCMOFSET, 0x20);
+
+        /*
+         * AVDD = 6.8V
+         * AVCL = -4.8V
+         * VDS = 2.3V
+         */
+        write_reg(par, PWCTRL1, 0xA4, 0xA1);
+
+        write_reg(par, MIPI_DCS_SET_DISPLAY_ON);
+        return 0;
+}
+
+//************* Start Initial Sequence **********//
+write_reg(par, 0x11); //Sleep out
+mdelay(120);     //Delay 120ms
+//************* Start Initial Sequence **********// 
+write_reg(par, 0x36, 0x00);
+
+write_reg(par, 0x3A, 0x05);
+
+write_reg(par, 0xB2,0x0C,0x0C,0x00,0x33,0x33);
+
+write_reg(par, 0xB7,0x35);     
+
+write_reg(par, 0xBB, 0x32);     //Vcom=1.35V
+        
+write_reg(par, 0xC2, 0x01);
+
+write_reg(par, 0xC3,0x15);     //GVDD=4.8V
+      
+write_reg(par, 0xC4, 0x20);     //VDV, 0x20:0v
+
+write_reg(par, 0xC6,0x0F);    //0x0F:60Hz         
+
+write_reg(par, 0xD0, 0xA4, 0xA1);     
+
+write_reg(par, 0xE0,0xD0,0x08,0x0E,0x09,0x09,0x05,0x31,0x33,0x48,0x17,0x14,0x15,0x31,0x34);  
+
+write_reg(par, 0xE1,0xD0,0x08,0x0E,0x09,0x09,0x15,0x31,0x33,0x48,0x17,0x14,0x15,0x31,0x34);
+
+write_reg(par, 0x21);
+
+write_reg(par, 0x29);
+
+
+Section "Device"                                                                                                                        
+
+Identifier "Framebuffer"
+
+Driver  "fbdev"
+
+Option  "fbdev"  "/dev/fb0"
+
+EndSection
+
+Section "Monitor"
+
+Identifier "Generic Monitor"
+
+ModelName    "Monitor Model"
+
+DisplaySize 280 240
+
+EndSection
+
+Section "Screen"
+
+Identifier "Default Screen"
+
+Device  "Framebuffer"
+
+Monitor  "Generic Monitor"
+
+EndSection
+                dma: dma-controller@1c02000 {
+                        compatible = "allwinner,sun8i-v3s-dma";
+                        reg = <0x01c02000 0x1000>;
+                        interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+                        clocks = <&ccu CLK_BUS_DMA>;
+                        resets = <&ccu RST_BUS_DMA>;
+                        #dma-cells = <1>;
+                };
+
+                spi0: spi@1c68000 {
+                        compatible = "allwinner,sun8i-h3-spi";
+                        reg = <0x01c68000 0x1000>;
+                        interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
+                        clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
+                        clock-names = "ahb", "mod";
+                        dmas = <&dma 23>, <&dma 23>;
+                        dma-names = "rx", "tx";
+                        pinctrl-names = "default";
+                        pinctrl-0 = <&spi0_pins>;
+                        resets = <&ccu RST_BUS_SPI0>;
+                        status = "disabled";
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                };
+
+
+Note that 'E:/Location_Software/msys2/mingw64/share' is not in the search path
+set by the XDG_DATA_HOME and XDG_DATA_DIRS
+environment variables, so applications may not
+be able to find it until you set them. The
+directories currently searched are:
+
+- E:\Location_Software\msys2\home\16578\.local\share
+- /usr/local/share/
+- /usr/share/
