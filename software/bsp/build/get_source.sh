@@ -17,6 +17,8 @@ BUILDROOT_RESOURCE_URL=https://buildroot.org/downloads/${BUILDROOT_RESOURCE}
 
 DOWNLOAD_TOOL=wget
 
+DEST_DIR=/tmp
+
 function echo_message()
 {
 	echo -e "${GREEN_COLOR} MESSAGE: ${RES} $1"
@@ -37,6 +39,11 @@ function usage()
 function do_get_uboot()
 {
 	echo_message "Downloading uboot resource"
+	
+	if [ -f "/tmp/${UBOOT_RESOURCE}" ]; then
+		echo_message "File exists ${UBOOT_RESOURCE}"
+		return 0;
+	fi
 
 	${DOWNLOAD_TOOL} ${UBOOT_RESOURCE_URL} -O /tmp/${UBOOT_RESOURCE}
 	if [ $? -ne 0 ]; then
@@ -51,7 +58,7 @@ function do_get_kernel()
 
 	echo_message "Downloading kernel resource"
 
-	${DOWNLOAD_TOOL} ${KERNEL_RESOURCE_URL}
+	${DOWNLOAD_TOOL} ${KERNEL_RESOURCE_URL} -O /tmp/${KERNEL_RESOURCE}
 	if [ $? -ne 0 ]; then
 		echo_message "Failed to download..."
 		return 1;
@@ -62,8 +69,8 @@ function do_get_kernel()
 function do_get_buildroot()
 {
 	echo_message "Downloading buildroot resource"
-
-	${DOWNLOAD_TOOL} ${BUILDROOT_RESOURCE_URL}
+	
+	${DOWNLOAD_TOOL} ${BUILDROOT_RESOURCE_URL} -O /tmp/${BUILDROOT_RESOURCE}
 	if [ $? -ne 0 ]; then
 		echo_message "Failed to download..."
 		return 1;
@@ -89,6 +96,7 @@ if [ $# -eq 0 ]; then
 	read choice
 	if [ $choice = "y" -o $choice = "Y" ]; then
 		echo_message "Downloading all resource..."
+		do_get_all
 	else
 		echo_message "abort"
 	fi
