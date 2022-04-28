@@ -1,9 +1,6 @@
 [submodule "software/packages/InfoNES/arm-NES-linux"]
 	path = software/packages/InfoNES/arm-NES-linux
 	url = https://github.com/embeddedboys/arm-NES-linux.git
-[submodule "software/bsp/modules/rtl8188eu"]
-	path = software/bsp/modules/rtl8188eu
-	url = https://github.com/embeddedboys/rtl8188eu
 [submodule "software/bsp/modules/suniv_drivers"]
 	path = software/bsp/modules/suniv_drivers
 	url = https://github.com/embeddedboys/suniv_drivers.git
