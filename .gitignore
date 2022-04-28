@@ -7,5 +7,5 @@
 *.tar.bz2
 *.so
 *.out
-software/bsp/linux-5.17
+software/bsp/linux-5.17.2
 software/bsp/buildroot-2022.02/
