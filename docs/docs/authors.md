@@ -1,30 +1,6 @@
 # 作者
 ------
 
-* `IotaHydrae` - 工程创建
+截止到现在，参与本项目开发中的人员如下
 
-* `IotaHydrae` - 原理图
-
-* `IotaHydrae` - 器件选型
-
-* `IotaHydrae` - 零件清单
-
-* `IotaHydrae` - 设计图
-
-* `IotaHydrae` - BSP
-
-* `IotaHydrae` - 驱动程序设计
-
-* `IotaHydrae` - 软件设计
-
-* `IotaHydrae` - 外壳设计
-
-* `IotaHydrae` - 设备稳定性测试
-
-* `IotaHydrae` - 文档编写
-
-* `IotaHydrae` - 资料整理
-
-* `IotaHydrae` - 时序逻辑分析
-
-* `IotaHydrae` - 文档网站
+[IotaHydrae](https://github.com/IotaHydrae)

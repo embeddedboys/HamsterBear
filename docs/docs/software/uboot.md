@@ -5,10 +5,12 @@
  https://opensource.org/licenses/MIT
 -->
 
-# 硬件文档
+# U-Boot
 
-## 传送门
+## 所做修改
 
-### [核心板](core.md)
+## 编译
 
-### [底板](base.md)
+## 编译生成的文件
+
+## 如何进行二次开发
