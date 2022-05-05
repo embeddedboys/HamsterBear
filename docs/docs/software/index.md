@@ -16,7 +16,7 @@ https://whycan.com 挖坑网论坛，主要玩全志芯片的，也有其他，�
 
 ## 系统移植篇
 
-### 全志suniv启动流程
+### [全志suniv启动流程](suniv-boot.md)
 
 ### [U-Boot](uboot.md)
 
@@ -25,11 +25,70 @@ https://whycan.com 挖坑网论坛，主要玩全志芯片的，也有其他，�
 ### [Linux Modules](modules.md)
 
 ### [Buildroot](buildroot.md)
-
 ### [Debian](debian.md)
 
 ### [最小系统镜像打包](post-image.md)
 
 ### [镜像的烧录](burn-image.md)
 
+## 驱动开发篇
+
+### GPIO
+
+### I2C
+
+### SPI
+
+### PWM
+
+### LCD
+
+### IR
+
+### ADC
+
+### RTC
+
+### SDIO
+
+### DMA
+
+### UART
+
+###  CSI
+
+### TP
+
+### Audio Codec
+
 ## 软件开发篇
+
+### LVGL标准移植
+
+### Joystick输入
+
+### LVGL应用开发
+
+### 用户空间的I2C调用
+
+### 用户空间的SPI调用
+
+### 用户空间的DMA调用
+
+### 用户空间的uinput模拟输入事件
+
+### 串口编程
+
+## 裸机开发
+
+### 位置无关码点灯 blink
+
+### 重定位
+
+### 裸机UART
+
+### 裸机I2C
+
+### 裸机SPI
+
+## RTOS移植
