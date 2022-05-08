@@ -81,9 +81,15 @@ https://whycan.com 挖坑网论坛，主要玩全志芯片的，也有其他，�
 
 ## 裸机开发
 
-### 位置无关码点灯 blink
+### [裸机开发的一些注意事项](noos/tips.md)
+
+### [blink](noos/blink.md)
 
 ### 重定位
+
+### 时钟初始化
+
+### DDR初始化
 
 ### 裸机UART
 
