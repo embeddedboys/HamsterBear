@@ -15,8 +15,9 @@
 为了让其更加生动形象，我们给`HamsterBear`的底板取了个外号叫做**`履带(Track)`**，这是我们给它设计的第一款底板 **`HamsterBear Track Wireless`**
 ![HamsterBear Track Wireless](assets/hamsterbear_track_wireless_real.jpg "HamsterBear Track Wireless")
 
-![HamsterBear Track Wireless](assets/hamsterbear_track_wireless_real_top.jpg "HamsterBear Track Wireless")
+![HamsterBear Track Wireless](assets/hamsterbear_track_wireless_real_top2.jpg "HamsterBear Track Wireless")
 
+[`点击查看更多实物图`](assets/gallery.md)
 
 ## 软件配置
 ------
