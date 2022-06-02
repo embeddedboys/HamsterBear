@@ -15,6 +15,8 @@
 为了让其更加生动形象，我们给`HamsterBear`的底板取了个外号叫做**`履带(Track)`**，这是我们给它设计的第一款底板 **`HamsterBear Track Wireless`**
 ![HamsterBear Track Wireless](assets/hamsterbear_track_wireless_real.jpg "HamsterBear Track Wireless")
 
+lvgl桌面环境
+
 ![HamsterBear Track Wireless](assets/hamsterbear_track_wireless_real_top2.jpg "HamsterBear Track Wireless")
 
 [`点击查看更多实物图`](assets/gallery.md)
@@ -22,7 +24,7 @@
 ## 软件配置
 ------
 
-* `SoC` : F1C200s arm926-ejs
+* `SoC` - Allwinner F1C200s arm926-ejs
 
 
 * `Kernel` - mainline v5.17
@@ -31,13 +33,9 @@
 * `U-Boot` - mainline v2022.2
 
 
-* `Buildroot` - v2022.2
-    X Server
-    Gtk
-    python3
-    VNC
-    Qt5等
+* `Buildroot` - mainline v2022.2
 
+* `lvgl` - mainline v8.2
 
 ## 工程结构
 ------
@@ -49,16 +47,13 @@
         tracks/                     # 底板
 
     software/                       # 有关软件设计的部分
-        bootable/                   # 可启动文件
         bsp/                        # 项目的最小系统工程
             u-boot/                 # u-boot工程
             linux/                  # linux工程
             buildroot/              # buildroot工程
             toolchain/              # 交叉编译工具链
 
-        modules/                    # 外部的驱动程序
         packages/                   # 外部的应用软件
-        scripts/                    # 脚本
 
     references/                    # 本项目所参考的内容
 
@@ -111,6 +106,6 @@
 
 #### **7. 有没有考虑量产，公开售卖**
 
-暂时还没有这个计划，因为底层还有些东西没适配好，另外文档也没写完，拿一个半成品出来卖的话，没什么意思，
+暂时还没有这个计划，因为用的主线代码底层还有些外设没适配好，另外文档也没写完，拿一个半成品出来卖的话，没什么意思，
 如果后期过程顺利的话，可以考虑小批量生产，在tb等销售。
 但是资料还是完全公开的，你们可以在此基础上自己拿去修改打样适配play。
