@@ -1,3 +1,4 @@
+# regular files
 *.o
 *.ko
 *.tar
@@ -7,6 +8,11 @@
 *.tar.bz2
 *.so
 *.out
+
+# mkdocs local build files
+docs/site
+
+# the bsp source decompress files
 software/bsp/linux-5.17.2
 software/bsp/buildroot-2022.02/
 software/bsp/u-boot-master/
