@@ -12,10 +12,12 @@
 
 [**`HamsterBear(仓鼠熊)`**]() 是基于[`Allwinner（全志科技）`](https://www.allwinnertech.com/)[`F1C200s`]() SoC 设计的嵌入式 Linux 开发板，我们在 `3x5cm` 尺寸上的PCB集成了众多功能，并且采用了M.2接口，方便开发多种多样的底板。
 
-为了让其更加生动形象，我们给`HamsterBear`的底板取了个外号叫做**`履带(Track)`**，这是我们给它设计的第一款底板 **`HamsterBear Track Wireless`**
+为了让其更加生动形象，我们给 `HamsterBear` 的底板取了个外号叫做 **`履带(Track)`**，这是我们给它设计的第一款底板 **`HamsterBear Track Wireless`**，已经合并进仓库 `hardware` 中。毫无疑问的是，未来还会有更多种类的底板，
+比如掌机、户外辅助、口袋相机等等，一切都在计划之中。
+
 ![HamsterBear Track Wireless](assets/hamsterbear_track_wireless_real.jpg "HamsterBear Track Wireless")
 
-lvgl桌面环境
+基于 [`lvgl`](https://lvgl.io) 的桌面环境 [`HamsterBearHelmet`](https://github.com/embeddedboys/HamsterBearHelmet)
 
 ![HamsterBear Track Wireless](assets/hamsterbear_track_wireless_real_top2.jpg "HamsterBear Track Wireless")
 
