@@ -19,9 +19,9 @@
 | Allwinner F1C800 	        | (suniv) |
 | Allwinner F1D100 	        | (suniv) |
 
-本项目主要涉及F1C100s和F1C200s，F1C200s为100s的增强版本
+本项目主要涉及[F1C100s](https://www.allwinnertech.com/index.php?c=product&a=index&id=73)和[F1C200s](https://www.allwinnertech.com/index.php?c=product&a=index&id=74)，[F1C200s](https://www.allwinnertech.com/index.php?c=product&a=index&id=74)为100s的增强版本
 
-F1C100s 硬件参数
+[F1C100s](https://www.allwinnertech.com/index.php?c=product&a=index&id=73) 硬件参数
 
 | Manufacturer	| Allwinner |
 | ------------- | --------- |
@@ -36,7 +36,7 @@ F1C100s 硬件参数
 | USB	        | USB 2.0 OTG |
 | Website	    | [Product Page](https://www.allwinnertech.com/index.php?c=product&a=index&id=73) |
 
-F1C200s 在硬件参数上与 F1C100s 大体保持一致，区别如下:
+[F1C200s](https://www.allwinnertech.com/index.php?c=product&a=index&id=74) 在硬件参数上与 [F1C100s](https://www.allwinnertech.com/index.php?c=product&a=index&id=73) 大体保持一致，区别如下:
 
 `F1C100s`
 * `Memory`- 32MB Embedded DDR1
@@ -44,7 +44,7 @@ F1C200s 在硬件参数上与 F1C100s 大体保持一致，区别如下:
             MPEG1/2/4 1280x720@30fps decoding
             MJPEG 1280x720@30fps encoding
             JPEG encode size up to 8192x8192
-            
+
 `F1C200s`
 * `Memory`- 64MB Embedded DDR1
 * `Video` - H.264 1920x1080@30fps decoding
