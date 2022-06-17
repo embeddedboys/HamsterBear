@@ -103,8 +103,9 @@
 
 #### **6. 为什么核心板用了MIniUSB接口，而不用type-C**
 
-这个起始设计的最初就考虑到了，但是这颗SoC并不支持type-C接口，而是使用USB ID确定主从机的USB类型，所以
-选择权确定在了MicroUSB和MiniUSB之间，因为MiniUSB在使用寿命方面要比MicroUSB长，所以最后选择了MiniUSB。
+这个起始设计的最初就考虑到了，但是这颗SoC的OTG部分并不支持type-C接口，而是使用USB ID确定主从机的USB类型，
+如果从外部适配Type-C的话，又直接增加了成本，所以接口的选择权锁定在了MicroUSB和MiniUSB之间，
+最后因为MiniUSB在使用寿命方面要比MicroUSB长，所以最后选择了MiniUSB。
 
 #### **7. 有没有考虑量产，公开售卖**
 
