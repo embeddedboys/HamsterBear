@@ -4,3 +4,6 @@
 [submodule "software/bsp/modules/suniv_drivers"]
 	path = software/bsp/modules/suniv_drivers
 	url = https://github.com/embeddedboys/suniv_drivers.git
+[submodule "software/packages/HamsterBearHelmet"]
+	path = software/packages/HamsterBearHelmet
+	url = https://github.com/embeddedboys/HamsterBearHelmet
