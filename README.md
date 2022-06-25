@@ -1,11 +1,13 @@
 HamsterBear
 -----------
 
+[[中文](README.md)] [[English](README.en.md)]
+
 ![HamsterBear](docs/docs/assets/hamsterbear_real.jpg "HamsterBear")
 
 HamsterBear 是基于全志 F1C200s 设计的嵌入式Linux开发板
 
-访问本项目的官网网站（建设中）：
+访问本项目的网站：
 [`https://embeddedboys.github.io/HamsterBear/`](https://embeddedboys.github.io/HamsterBear/)
 
 硬件配置
@@ -25,7 +27,7 @@ HamsterBear 是基于全志 F1C200s 设计的嵌入式Linux开发板
 
 * `FPC Interface` : CSI TFT
 
-* `Header` : PE0~11 PA0~3
+* `Header` : PE0-11 PA0-3
 
 * `M2 NGFF` : 67Pins M-KEY 
 
@@ -63,20 +65,24 @@ HamsterBear 是基于全志 F1C200s 设计的嵌入式Linux开发板
 -------
 
 * `U-Boot` : 
+  * 可从sdcard启动的bsp uboot
+  * 可从nand flash启动的mainline uboot
 
-* `Kernel` : v5.17.0
+* `Kernel` : 主线 v5.17.0
 
-* `Buildroot` : v2022.2
+* `Buildroot` : 主线 v2022.2
 
     * directfb
     * X server
     * x11vnc
-    * Qt5 (默认配置未添加)
+    * Qt5
     * GTK
     * Python3.10
 
 网络连接可通过如下方式：
-1. USB OTG网络共享（g_ether）
+1. USB 网络共享（g_ether）
 2. 底板RTL8188EUS无线模组
 
+更多
+----
 更多说明见仓库内各目录下自述文件
