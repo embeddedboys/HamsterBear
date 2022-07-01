@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# Starts lvgl
+#
+
+BIN=/root/demo
+
+start() {
+        printf "Starting lvgl: "
+        /root/hamsterbear_helmet_v0.2 &
+        [ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+
+stop() {
+        printf "Stopping lvgl: "
+        killall hamsterbear_helmet_v0.2
+        [ $? = 0 ] && echo "OK" || echo "Program haven't started!"
+}
+
+restart() {
+        stop
+        sleep 2
+        start
+}
+
+case "$1" in
+        start)
+                start
+        ;;
+        stop)
+                stop
+        ;;
+        restart|reload)
+                restart
+        ;;
+        *)
+                echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
