@@ -4,7 +4,7 @@
  This software is released under the MIT License.
  https://opensource.org/licenses/MIT
 -->
-
+# FAQs
 
 #### **1. 酷，我接下来应该做什么？**
 **用户向导 -> [快速上手](howtouse.md)** 章节里介绍了基本的用法，更详细的用法位于 **`使用文档`** 中。
