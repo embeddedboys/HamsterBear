@@ -1,0 +1,33 @@
+From 8249375be15cdb66fde50de65c79fbe3b72ba43e Mon Sep 17 00:00:00 2001
+From: IotaHydrae <writeforever@foxmail.com>
+Date: Tue, 5 Jul 2022 10:06:25 +0800
+Subject: [PATCH 5/7] disable dma transfer for spi
+
+Signed-off-by: IotaHydrae <writeforever@foxmail.com>
+---
+ drivers/spi/spi-sun6i.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/spi/spi-sun6i.c b/drivers/spi/spi-sun6i.c
+index 23ad05252..93f59e886 100644
+--- a/drivers/spi/spi-sun6i.c
++++ b/drivers/spi/spi-sun6i.c
+@@ -272,6 +272,7 @@ static int sun6i_spi_transfer_one(struct spi_master *master,
+ 	sspi->rx_buf = tfr->rx_buf;
+ 	sspi->len = tfr->len;
+ 	use_dma = master->can_dma ? master->can_dma(master, spi, tfr) : false;
++	use_dma = false;
+ 
+ 	/* Clear pending interrupts */
+ 	sun6i_spi_write(sspi, SUN6I_INT_STA_REG, ~0);
+@@ -699,6 +700,7 @@ static int sun6i_spi_remove(struct platform_device *pdev)
+ static const struct of_device_id sun6i_spi_match[] = {
+ 	{ .compatible = "allwinner,sun6i-a31-spi", .data = (void *)SUN6I_FIFO_DEPTH },
+ 	{ .compatible = "allwinner,sun8i-h3-spi",  .data = (void *)SUN8I_FIFO_DEPTH },
++	{ .compatible = "allwinner,suniv-spi",  .data = (void *)SUN8I_FIFO_DEPTH },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, sun6i_spi_match);
+-- 
+2.34.1
+
