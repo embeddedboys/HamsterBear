@@ -23,3 +23,4 @@ nav:
         - '作者': authors.md
         - '许可证': license.md
         - '发行说明': releasenote.md
+        - 'FAQs': FAQs.md
