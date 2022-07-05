@@ -1,0 +1,25 @@
+From 85b2d64a1bbbe1dfe67186bcb09eff95f7828f16 Mon Sep 17 00:00:00 2001
+From: IotaHydrae <writeforever@foxmail.com>
+Date: Tue, 5 Jul 2022 10:05:34 +0800
+Subject: [PATCH 3/7] add debug info for adc key
+
+Signed-off-by: IotaHydrae <writeforever@foxmail.com>
+---
+ drivers/input/keyboard/sun4i-lradc-keys.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/input/keyboard/sun4i-lradc-keys.c b/drivers/input/keyboard/sun4i-lradc-keys.c
+index 4a796bed4..82a94ab95 100644
+--- a/drivers/input/keyboard/sun4i-lradc-keys.c
++++ b/drivers/input/keyboard/sun4i-lradc-keys.c
+@@ -111,6 +111,7 @@ static irqreturn_t sun4i_lradc_irq(int irq, void *dev_id)
+ 	if ((ints & CHAN0_KEYDOWN_IRQ) && lradc->chan0_keycode == 0) {
+ 		val = readl(lradc->base + LRADC_DATA0) & 0x3f;
+ 		voltage = val * lradc->vref / 63;
++		printk(KERN_WARNING "adckey val: %d, voltage: %d\n", val, voltage);
+ 
+ 		for (i = 0; i < lradc->chan0_map_count; i++) {
+ 			diff = abs(lradc->chan0_map[i].voltage - voltage);
+-- 
+2.34.1
+

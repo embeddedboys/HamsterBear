@@ -1,0 +1,41 @@
+From 89380446fb6d3402b19d56df0d29a23eb1a6f900 Mon Sep 17 00:00:00 2001
+From: IotaHydrae <writeforever@foxmail.com>
+Date: Tue, 5 Jul 2022 10:04:18 +0800
+Subject: [PATCH 2/7] start add dma support for suniv f1c100s
+
+Signed-off-by: IotaHydrae <writeforever@foxmail.com>
+---
+ drivers/dma/Kconfig     | 4 ++--
+ drivers/dma/sun4i-dma.c | 1 +
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+index 6bcdb4e6a..cd9e81c1f 100644
+--- a/drivers/dma/Kconfig
++++ b/drivers/dma/Kconfig
+@@ -153,8 +153,8 @@ config DMA_SA11X0
+ 
+ config DMA_SUN4I
+ 	tristate "Allwinner A10 DMA SoCs support"
+-	depends on MACH_SUN4I || MACH_SUN5I || MACH_SUN7I
+-	default (MACH_SUN4I || MACH_SUN5I || MACH_SUN7I)
++	depends on MACH_SUN4I || MACH_SUN5I || MACH_SUN7I || MACH_SUNIV
++	default (MACH_SUN4I || MACH_SUN5I || MACH_SUN7I || MACH_SUNIV)
+ 	select DMA_ENGINE
+ 	select DMA_VIRTUAL_CHANNELS
+ 	help
+diff --git a/drivers/dma/sun4i-dma.c b/drivers/dma/sun4i-dma.c
+index 93f1645ae..2882a3526 100644
+--- a/drivers/dma/sun4i-dma.c
++++ b/drivers/dma/sun4i-dma.c
+@@ -1267,6 +1267,7 @@ static int sun4i_dma_remove(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id sun4i_dma_match[] = {
++	{ .compatible = "allwinner,suniv-f1c100s-dma" },
+ 	{ .compatible = "allwinner,sun4i-a10-dma" },
+ 	{ /* sentinel */ },
+ };
+-- 
+2.34.1
+
