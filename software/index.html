@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="offical site of HamsterBear">
+    <meta name="author" content="IotaHydrae">
+    <link rel="canonical" href="https://embeddedboys.github.io/HamsterBear/software/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>软件文档 - HamsterBear</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">HamsterBear</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">主页</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户向导 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../howtouse/">快速上手</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">使用文档 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hardware/">硬件文档</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">软件文档</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../authors/">作者</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../license/">许可证</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../releasenote/">发行说明</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../FAQs/">FAQs</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../hardware/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../authors/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/embeddedboys/HamsterBear/edit/main/docs/docs/software/index.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#_1">软件文档</a></li>
+            <li class="second-level"><a href="#_2">说明</a></li>
+                
+            <li class="second-level"><a href="#_3">系统移植篇</a></li>
+                
+                <li class="third-level"><a href="#suniv-soc">全志 suniv SoC 家族</a></li>
+                <li class="third-level"><a href="#suniv-soc_1">全志 suniv SoC 启动流程</a></li>
+                <li class="third-level"><a href="#u-boot">U-Boot</a></li>
+                <li class="third-level"><a href="#linux">Linux</a></li>
+                <li class="third-level"><a href="#linux-modules">Linux Modules</a></li>
+                <li class="third-level"><a href="#buildroot">Buildroot</a></li>
+                <li class="third-level"><a href="#debian">Debian</a></li>
+                <li class="third-level"><a href="#_4">最小系统镜像打包</a></li>
+                <li class="third-level"><a href="#_5">镜像的烧录</a></li>
+            <li class="second-level"><a href="#_6">驱动开发篇</a></li>
+                
+                <li class="third-level"><a href="#gpio">GPIO</a></li>
+                <li class="third-level"><a href="#i2c">I2C</a></li>
+                <li class="third-level"><a href="#spi">SPI</a></li>
+                <li class="third-level"><a href="#pwm">PWM</a></li>
+                <li class="third-level"><a href="#lcd">LCD</a></li>
+                <li class="third-level"><a href="#ir">IR</a></li>
+                <li class="third-level"><a href="#adc">ADC</a></li>
+                <li class="third-level"><a href="#rtc">RTC</a></li>
+                <li class="third-level"><a href="#sdio">SDIO</a></li>
+                <li class="third-level"><a href="#dma">DMA</a></li>
+                <li class="third-level"><a href="#uart">UART</a></li>
+                <li class="third-level"><a href="#csi">CSI</a></li>
+                <li class="third-level"><a href="#tp">TP</a></li>
+                <li class="third-level"><a href="#audio-codec">Audio Codec</a></li>
+            <li class="second-level"><a href="#_7">软件开发篇</a></li>
+                
+                <li class="third-level"><a href="#lvgl">LVGL标准移植</a></li>
+                <li class="third-level"><a href="#joystick">Joystick输入</a></li>
+                <li class="third-level"><a href="#lvgl_1">LVGL应用开发</a></li>
+                <li class="third-level"><a href="#i2c_1">用户空间的 I2C 调用</a></li>
+                <li class="third-level"><a href="#spi_1">用户空间的 SPI 调用</a></li>
+                <li class="third-level"><a href="#dma_1">用户空间的 DMA 调用</a></li>
+                <li class="third-level"><a href="#v4l2">用户空间的 v4l2 调用</a></li>
+                <li class="third-level"><a href="#uinput">用户空间的uinput模拟输入事件</a></li>
+                <li class="third-level"><a href="#_8">串口编程</a></li>
+            <li class="second-level"><a href="#_9">裸机开发</a></li>
+                
+                <li class="third-level"><a href="#_10">裸机开发的一些注意事项</a></li>
+                <li class="third-level"><a href="#blink">blink</a></li>
+                <li class="third-level"><a href="#_11">重定位</a></li>
+                <li class="third-level"><a href="#_12">时钟初始化</a></li>
+                <li class="third-level"><a href="#ddr">DDR初始化</a></li>
+                <li class="third-level"><a href="#uart_1">裸机UART</a></li>
+                <li class="third-level"><a href="#i2c_2">裸机I2C</a></li>
+                <li class="third-level"><a href="#spi_2">裸机SPI</a></li>
+            <li class="second-level"><a href="#rtos">RTOS移植</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<!--
+ Copyright (c) 2022 Zheng hua
+
+ This software is released under the MIT License.
+ https://opensource.org/licenses/MIT
+-->
+
+<h1 id="_1"><strong>软件文档</strong></h1>
+<h2 id="_2">说明</h2>
+<p>这些文档中总结出的资料和经验，有相当一部分都是从网络上学习总结得来的，这里需要给出参考过的文章链接，比较重要的放在这里，其余的放在本文末尾。</p>
+<p>https://linux-sunxi.org 这是全志linux最大的社区了，里面记录了各种全志SoC Family的资料</p>
+<p>https://whycan.com 挖坑网论坛，主要玩全志芯片的，也有其他，全志为主，里面有很多大佬，不会的可以发帖问他们（狗头），我也会经常关注</p>
+<h2 id="_3">系统移植篇</h2>
+<h3 id="suniv-soc"><a href="suniv_family/">全志 suniv SoC 家族</a></h3>
+<h3 id="suniv-soc_1"><a href="suniv-boot/">全志 suniv SoC 启动流程</a></h3>
+<h3 id="u-boot"><a href="uboot/">U-Boot</a></h3>
+<h3 id="linux"><a href="Linux.md">Linux</a></h3>
+<h3 id="linux-modules"><a href="modules/">Linux Modules</a></h3>
+<h3 id="buildroot"><a href="buildroot/">Buildroot</a></h3>
+<h3 id="debian"><a href="debian/">Debian</a></h3>
+<h3 id="_4"><a href="post-image/">最小系统镜像打包</a></h3>
+<h3 id="_5"><a href="burn-image/">镜像的烧录</a></h3>
+<h2 id="_6">驱动开发篇</h2>
+<h3 id="gpio">GPIO</h3>
+<h3 id="i2c">I2C</h3>
+<h3 id="spi">SPI</h3>
+<h3 id="pwm">PWM</h3>
+<h3 id="lcd">LCD</h3>
+<h3 id="ir">IR</h3>
+<h3 id="adc">ADC</h3>
+<h3 id="rtc">RTC</h3>
+<h3 id="sdio">SDIO</h3>
+<h3 id="dma">DMA</h3>
+<h3 id="uart">UART</h3>
+<h3 id="csi">CSI</h3>
+<h3 id="tp">TP</h3>
+<h3 id="audio-codec">Audio Codec</h3>
+<h2 id="_7">软件开发篇</h2>
+<h3 id="lvgl">LVGL标准移植</h3>
+<h3 id="joystick">Joystick输入</h3>
+<h3 id="lvgl_1">LVGL应用开发</h3>
+<h3 id="i2c_1">用户空间的 I2C 调用</h3>
+<h3 id="spi_1">用户空间的 SPI 调用</h3>
+<h3 id="dma_1">用户空间的 DMA 调用</h3>
+<h3 id="v4l2">用户空间的 v4l2 调用</h3>
+<h3 id="uinput">用户空间的uinput模拟输入事件</h3>
+<h3 id="_8">串口编程</h3>
+<h2 id="_9">裸机开发</h2>
+<h3 id="_10"><a href="noos/tips/">裸机开发的一些注意事项</a></h3>
+<h3 id="blink"><a href="noos/blink/">blink</a></h3>
+<h3 id="_11">重定位</h3>
+<h3 id="_12">时钟初始化</h3>
+<h3 id="ddr">DDR初始化</h3>
+<h3 id="uart_1">裸机UART</h3>
+<h3 id="i2c_2">裸机I2C</h3>
+<h3 id="spi_2">裸机SPI</h3>
+<h2 id="rtos">RTOS移植</h2></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="offical site of HamsterBear">
+    <meta name="author" content="IotaHydrae">
+    <link rel="canonical" href="https://embeddedboys.github.io/HamsterBear/howtouse/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>快速上手 - HamsterBear</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">HamsterBear</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">主页</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户向导 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">快速上手</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">使用文档 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hardware/">硬件文档</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../software/">软件文档</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../authors/">作者</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../license/">许可证</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../releasenote/">发行说明</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../FAQs/">FAQs</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="..">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../hardware/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/embeddedboys/HamsterBear/edit/main/docs/docs/howtouse.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#_1">上手教程</a></li>
+            <li class="second-level"><a href="#_2">介绍</a></li>
+                
+            <li class="second-level"><a href="#_3">固件镜像</a></li>
+                
+            <li class="second-level"><a href="#_4">设备的连接</a></li>
+                
+            <li class="second-level"><a href="#debug">串口debug打印信息</a></li>
+                
+            <li class="second-level"><a href="#_5">交叉编译程序拷贝调试方法</a></li>
+                
+                <li class="third-level"><a href="#_6">串口调试</a></li>
+                <li class="third-level"><a href="#usb">USB调试</a></li>
+                <li class="third-level"><a href="#wlan">WLAN 网络调试</a></li>
+                <li class="third-level"><a href="#usbwlan">USB或WLAN网络下的调试方法</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>(这里放一张接口定义图)</p>
+<h1 id="_1"><strong>上手教程</strong></h1>
+<h2 id="_2"><strong>介绍</strong></h2>
+<p><code>HamsterBear</code> 主板一块</p>
+<p><code>HamsterBear</code> 拓展底板一块</p>
+<p><code>USB转串口模块</code> 一个</p>
+<p><code>MiniUSB线</code>一根</p>
+<h2 id="_3">固件镜像</h2>
+<p>这里有提供编译好的如下镜像文件
+- boot.scr （待添加）
+- uboot.bin （待添加）
+- dtb （待添加）
+- zImage （待添加）</p>
+<p>文件系统暂时提供如下几个：
+- buildroot （待添加）
+- debian （待添加）</p>
+<p>打包好可直接烧录的镜像:
+- nand flash （待添加）</p>
+<ul>
+<li>tf 卡 （待添加）</li>
+</ul>
+<h2 id="_4">设备的连接</h2>
+<p>在只有核心板的情况下MiniUSB接口既作为供电也作为OTG使用，串口使用UART0，需要通过杜邦线连接</p>
+<p>在连接到底板后，底板MicroUSB接口仅作为供电，串口使用UART1调试，也可通过ssh调试。</p>
+<h2 id="debug">串口debug打印信息</h2>
+<p>将串口转USB模块按如下示意图连接到开发板
+RXD -&gt; UART0_TX
+TXD -&gt; UART0_RX</p>
+<p>打开串口调试工具，这里以MobaXterm为例</p>
+<p>点击新建Session，选择Serial，选择Serial Port，设置波特率为115200 bps</p>
+<p>点击Advanced Serial Settings选项卡，将Flow Control设置为None，点击Ok</p>
+<h2 id="_5">交叉编译程序拷贝调试方法</h2>
+<p>这里提供了三种方法，供参考：
+1. 串口
+2. USB 网络调试
+3. WLAN 网络调试</p>
+<p>如上三种发放都可以用来调试设备，各有优缺点，下面简单说下：</p>
+<ul>
+<li>串口</li>
+</ul>
+<p>使用串口调试时，主要用过<code>lrzsz</code>库通过<code>Z-modem</code>协议来进行文件的传输，优点是方便，缺点是速率受串口波特率限制，假设串口波特率为<code>115200 kbit/s</code>，去掉uart起始位，校验位，z-modem可能还有校验机制，一秒大概能传输不到10KB。
+所以如果目标文件大小<code>几十KB</code>的话，可以用此种方式调试。</p>
+<ul>
+<li>网络</li>
+</ul>
+<p>使用<code>USB</code>或<code>WLAN</code>网络调试，其实都是通过<code>scp</code>和<code>nfs</code>等来进行调试的，优点是速率快，缺点是需要待网络配置好后才能使用。
+对于稍大点的程序，<code>几百KB~几十MB</code>，推荐用此种方法调试。</p>
+<h3 id="_6"><strong>串口调试</strong></h3>
+<p>默认的设备树中 <code>UART0</code> 复用到如下管脚：</p>
+<ul>
+<li><code>PE0</code> : UART0_RX </li>
+<li><code>PE1</code> : UART0_TX</li>
+</ul>
+<p>如果连接了底板，还可使用UART1、UART2，复用如下：</p>
+<ul>
+<li><code>PD3</code> : UART1_RX</li>
+<li>
+<p><code>PD4</code> : UART1_TX</p>
+</li>
+<li>
+<p><code>PD14</code> : UART2_RX</p>
+</li>
+<li><code>PD13</code> : UART2_TX</li>
+</ul>
+<h3 id="usb"><strong>USB调试</strong></h3>
+<blockquote>
+<p>当你只有核心板的时候，可以使用这种方法来调试设备</p>
+</blockquote>
+<p><img alt="HamsterBear" src="../assets/hamsterbear_real.jpg" title="HamsterBear" /></p>
+<p>按照如下博客中的流程配置好环境：
+https://www.cnblogs.com/hfwz/p/16053528.html (rootfs章节)</p>
+<h3 id="wlan"><strong>WLAN 网络调试</strong></h3>
+<blockquote>
+<p>当你搭配了底板之后，可以使用这种方式来调试设备</p>
+</blockquote>
+<p><img alt="HamsterBear Track Wireless" src="../assets/hamsterbear_track_wireless_real.jpg" title="HamsterBear Track Wireless" /></p>
+<p>按照如下博客中的流程配置好环境：</p>
+<p>https://www.cnblogs.com/hfwz/p/16168087.html (启动系统后章节)</p>
+<h3 id="usbwlan"><strong>USB或WLAN网络下的调试方法</strong></h3>
+<h4 id="_7">对于单个文件</h4>
+<pre><code class="language-shell"># 主机端
+scp ./demo root@192.168.31.76:/root/
+
+# 设备端
+./demo
+</code></pre>
+<h4 id="_8">对于目录</h4>
+<pre><code class="language-shell"># 主机端通过nfs导出某个目录
+可参考如下文章，安装并配置NFS服务章节
+http://wiki.100ask.org/Configuring_ubuntu
+
+# 设备端挂载nfs
+mount -t nfs -o nolock,vers=3,port=2049,mountport=9999 192.168.31.196:/home/huazheng/nfs_rootfs /mnt
+````
+
+#### 调试方法
+
+```shell
+# strace 查看系统调用，文件io等
+strace ./demo
+
+# ldd 查看使用到的.so文件
+ldd ./demo
+
+# nm 查看符号表
+nm ./demo
+
+# gdb 调试程序
+gdb ./demo
+
+(gdb) list 7 # 显示第7行附近的代码
+(gdb) b 7 # 在第7行设置断点
+(gdb) r # 运行程序
+(gdb) backstrace # 可查看程序崩溃栈
+</code></pre></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

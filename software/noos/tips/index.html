@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="offical site of HamsterBear">
+    <meta name="author" content="IotaHydrae">
+    <link rel="canonical" href="https://embeddedboys.github.io/HamsterBear/software/noos/tips/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>Tips - HamsterBear</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">HamsterBear</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">主页</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户向导 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../howtouse/">快速上手</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">使用文档 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../hardware/">硬件文档</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../">软件文档</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../authors/">作者</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../license/">许可证</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../releasenote/">发行说明</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../FAQs/">FAQs</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/embeddedboys/HamsterBear/edit/main/docs/docs/software/noos/tips.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#_1">裸机开发注意事项</a></li>
+            <li class="second-level"><a href="#_2">如何加载并运行一个程序？</a></li>
+                
+            <li class="second-level"><a href="#fel">如何进入FEL模式</a></li>
+                
+            <li class="second-level"><a href="#bootrom">BootROM是什么?</a></li>
+                
+            <li class="second-level"><a href="#sram-sdram">SRAM SDRAM 地址空间</a></li>
+                
+            <li class="second-level"><a href="#_3">什么是位置无关码？</a></li>
+                
+            <li class="second-level"><a href="#_4">什么是加载地址，链接地址又是什么？</a></li>
+                
+            <li class="second-level"><a href="#arm">ARM指令集</a></li>
+                
+            <li class="second-level"><a href="#makefile">Makefile 示例</a></li>
+                
+            <li class="second-level"><a href="#link-script">link script 示例</a></li>
+                
+            <li class="second-level"><a href="#mkimage">mkimage</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="_1">裸机开发注意事项</h2>
+<p>本节介绍F1C200s裸机开发的一些注意事项，例如
+- bootrom是什么？
+- sram sdram地址空间
+- 什么是位置无关码？
+- 什么是加载地址，链接地址又是什么？
+等</p>
+<p>本教程不涉及keil、jlink调试开发，主要基于arm-gcc和Makefile
+进行裸机程序的开发。</p>
+<h3 id="_2">如何加载并运行一个程序？</h3>
+<p>当你将源程序编译为bin文件之后，这应该是你要考虑的第一个问题，
+虽然不同平台有不同的方法，但是本质上就是加载程序到sram中，然后执行之。
+这里简单介绍下全志平台的方法：
+1. 内存加载运行</p>
+<pre><code class="language-shell"># 加载文件到内存指定位置
+sudo sunxi-fel -p write 0x00000000 led.bin
+# 执行指定位置的指令
+sudo sunxi-fel exec 0x00000000
+</code></pre>
+<p>此种方式无法直接访问ddr内存空间，因为没有进行初始化等操作
+复位后，cpu重新进入FEL模式</p>
+<ol>
+<li>flash烧写执行</li>
+</ol>
+<pre><code class="language-shell"># 烧写文件到flash指定位置
+sudo sunxi-fel -p spiflash-write 0 led.img
+# 复位，让bootROM 执行 led.img
+</code></pre>
+<p>led.img 是 修改添加头部信息的 led.bin，过程可参考本文mkimage小节</p>
+<p>有些bootROM有初始化ddr的功能，笔者未对flash编程方法进行测试，所以无法确定
+是否可以直接访问ddr空间，感兴趣的读者可以自行测试下。</p>
+<p>如果需要重新对flash编程，需要短接flash让cpu重新进入FEL模式</p>
+<p>注意，两种方式都需要SoC预先处于FEL模式</p>
+<h3 id="fel">如何进入FEL模式</h3>
+<p>当BootROM从spi sdio等接口检测不到有效的程序后，cpu会自动进入FEL模式</p>
+<h3 id="bootrom">BootROM是什么?</h3>
+<p>BootROM是位于SoC地址空间0x00000000处开始的一小段程序，其固化在SoC内部，
+只读，上电后BootROM首先被执行。</p>
+<p>细心的读者可能已经发现了，怎么内存加载运行的方式也是加载到0x00000000处运行？
+这不是跟BootROM的地址冲突了？有关这个问题，在下面的小节中讨论</p>
+<h3 id="sram-sdram">SRAM SDRAM 地址空间</h3>
+<p>根据芯片手册中的说明：
+SRAM A空间为 0x00010000 ~ 0x00019FFF 大小为40KB
+DDR1 空间为  0x80000000 ~ 0xBFFFFFFF 大小为1G</p>
+<p>F1C100s内置32MB DDR1
+F1C200s内置64MB DDR1</p>
+<p>所以实际上F1C200s DDR1可寻址的空间为 0x80000000 ~ 0x80400000</p>
+<p>对程序进行重定位的时候，需要先初始化ddr，可以参考uboot中dram_suniv.c，
+此代码基于xboot中的裸机ddr初始化文件。</p>
+<p>有关bootROM地址总线冲突的问题，我个人的猜想如下：
+1. SoC在BootROM失效后，其内存控制器将SRAM A的首地址切换为0x00000000
+2. SoC内部有一块sram，他将在bootROM失效后，代替BootROM的位置</p>
+<p>这里的失效指BootROM找不到可加载的程序</p>
+<p>PS：
+有条件的同学，可以向全志官方求证这个问题，然后可以修改此文档，答复这个问题。</p>
+<h3 id="_3">什么是位置无关码？</h3>
+<h3 id="_4">什么是加载地址，链接地址又是什么？</h3>
+<h3 id="arm">ARM指令集</h3>
+<h3 id="makefile">Makefile 示例</h3>
+<pre><code class="language-c">PREFIX?=arm-none-eabi-
+CC:=$(PREFIX)gcc
+LD:=$(PREFIX)ld
+AR:=$(PREFIX)ar
+OBJCOPY:=$(PREFIX)objcopy
+OBJDUMP:=$(PREFIX)objdump
+
+LOAD_ADDR:=0x00000000
+LINK_ADDR:=0x80000000
+
+LINK_SCRIPT:=suniv-f1c200s.lds
+#LINK_SCRIPT:=suniv.lds
+
+objs:=head.o
+
+default:led.bin
+
+led.bin: clean $(objs)
+        $(LD) -T $(LINK_SCRIPT) -g $(objs) -o led.elf
+
+        $(OBJCOPY) -O binary -S led.elf led.bin
+        $(OBJDUMP) -D -m arm led.elf &gt; led.dis
+
+led.img: led.bin
+        mkimage -C none -A arm -T sunxi_egon -e $(LINK_ADDR) -d led.bin $@
+
+%.o:%.S
+        $(CC) -nostdlib -g -c -o $@ $&lt;
+%.o:%.c
+        $(CC) -nostdlib -g -c -o $@ $&lt;
+
+.PHONY:clean
+clean:
+        rm -rf *.img *.dis *.elf *.o *.bin
+
+.PHONY:write
+write:led.bin
+        sudo sunxi-fel -p write $(LOAD_ADDR) $&lt;
+
+.PHONY:write-flash
+write-flash:led.img
+        sudo sunxi-fel -p spiflash-write 0 $
+
+.PHONY:exec
+
+exec:write
+        sudo sunxi-fel exec $(LOAD_ADDR)
+
+.PHONY:ver
+
+ver:
+        sudo sunxi-fel ver
+
+</code></pre>
+<h3 id="link-script">link script 示例</h3>
+<pre><code class="language-c">MEMORY { .sram : ORIGIN = 0x00010000, LENGTH = 0x000A000 }
+MEMORY { .sdram : ORIGIN = 0x80000000, LENGTH = 0x00400000 }
+
+OUTPUT_FORMAT(&quot;elf32-littlearm&quot;, &quot;elf32-littlearm&quot;, &quot;elf32-littlearm&quot;)
+OUTPUT_ARCH(arm)
+ENTRY(_start)
+SECTIONS {
+        .text      :
+        {
+                __start = .;
+                *(.text)
+        } &gt; .sram
+
+        . = ALIGN(4);
+        .rodata : { *(.rodata) } &gt; .sram
+
+        . = ALIGN(4);
+        .data : {
+                *(.data)
+         } &gt; .sram
+
+        . = ALIGN(4);
+        .bss :
+        {
+                __bss_start = .;
+                *(.bss)
+                *(.COMMON)
+                __bss_end = .;
+        } &gt; .sdram
+}
+
+</code></pre>
+<h3 id="mkimage">mkimage</h3>
+<p>当你从spi或者sdio启动时，cpu内部的bootROM会尝试从如上接口读取有效的程序，
+如何判断其有效性？
+通过如下命令给bin文件添加<code>sunxi eGon</code>（魔术头）</p>
+<pre><code class="language-c">mkimage -C none -A arm -T sunxi_egon -e $(LINK_ADDR) -d led.bin $@
+</code></pre>
+<p>可以参考uboot源码中<code>u-boot/tools/mksunxiboot.c</code>来查看对文件做了什么处理</p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
