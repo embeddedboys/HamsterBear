@@ -40,11 +40,40 @@ function echo_message()
 	return 0
 }
 
-# TODO: add build bootloader function
+
+# TODO: add bootloader build function
+function build_bootloader()
+{
+	return 0
+}
 
 # TODO: add build kernel function
+function build_kernel()
+{
+	return 0
+}
 
 # TODO: add build rootfs function
-
+function build_rootfs
+{
+	return 0
+}
 # script main
+case "$1" in
+	boot)
+		echo_message "build bootloader"
+		;;
+	kernel)
+		echo_message "build kernel"
+		;;
+	rootfs)
+		echo_message "build rootfs"
+		;;
+	all)
+		echo_message "build all"
+		;;
+	*)
+		echo_message "hello"
+		;;
 
+esac
