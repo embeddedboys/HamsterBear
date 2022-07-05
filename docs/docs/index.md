@@ -26,7 +26,7 @@
 ## 软件配置
 ------
 
-* `SoC` - Allwinner F1C200s arm926-ejs
+* `SoC` - Allwinner F1C200s
 
 
 * `Kernel` - mainline v5.17
