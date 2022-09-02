@@ -96,6 +96,17 @@
 			#size-cells = <0>;
 		};
 
+		i2c1: i2c@1c27400 {
+			compatible = "allwinner,suniv-f1c100s-i2c";
+			reg = <0x01C27400 0x100>;
+			interrupts  = <8>;
+			clocks = <&ccu CLK_BUS_I2C1>, <&ccu CLK_BUS_I2C1>;
+			clock-names = "ahb", "mod";
+			resets = <&ccu RST_BUS_I2C1>;
+			status = "disabled";
+			#address-cells = <1>;
+			#size-cells = <0>;
+		};
 /*
 		i2c1: i2c@1c27400 {
 			compatible = "allwinner,sun4i-a10-i2c";
@@ -277,25 +288,25 @@
 				function = "i2c2";
 			};
 
-                        spi0_pd_pins: spi0-pd-pins {
-                                pins = "PD18", "PD19", "PD20", "PD21";
-                                function = "spi0";
-                        };
+			spi0_pd_pins: spi0-pd-pins {
+					pins = "PD18", "PD19", "PD20", "PD21";
+					function = "spi0";
+			};
 
-                        spi1_pa_pins: spi1-pa-pins {
-                                pins = "PA0", "PA1", "PA2", "PA3";
-                                function = "spi1";
-                        };
+			spi1_pa_pins: spi1-pa-pins {
+					pins = "PA0", "PA1", "PA2", "PA3";
+					function = "spi1";
+			};
 
-                        mmc0_pins: mmc0-pins {
-                                pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
-                                function = "mmc0";
-                        };
+			mmc0_pins: mmc0-pins {
+					pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
+					function = "mmc0";
+			};
 
-                        mmc1_pins: mmc1-pins {
-                                pins = "PC0", "PC1", "PC2";
-                                function = "mmc1";
-                        };
+			mmc1_pins: mmc1-pins {
+					pins = "PC0", "PC1", "PC2";
+					function = "mmc1";
+			};
 		};
 
 		timer@1c20c00 {

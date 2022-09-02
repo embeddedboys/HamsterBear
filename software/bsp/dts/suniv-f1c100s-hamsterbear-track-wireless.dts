@@ -95,7 +95,31 @@
 		};
 	};
 */
-
+/*
+	i2c0: i2c@1c27000 {
+		compatible = "allwinner,suniv-f1c100s-i2c";
+		reg = <0x01C27000 0x100>;
+		interrupts  = <7>;
+		clocks = <&ccu CLK_BUS_I2C0>, <&ccu CLK_BUS_I2C0>;
+		clock-names = "ahb", "mod";
+		resets = <&ccu RST_BUS_I2C0>;
+		status = "okay";
+		#address-cells = <1>;
+		#size-cells = <0>;
+	};
+*/
+/*
+	i2c0: i2c-gpio_hamsterbear0 {
+		compatible = "i2c-gpio";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "okay";
+		i2c-gpio,delay-us = <5>;
+		scl-gpios = <&pio 4 11 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+		sda-gpios = <&pio 4 12 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+	};
+*/
+/*
 	i2c1: i2c-gpio_hamsterbear1 {
 		compatible = "i2c-gpio";
 		#address-cells = <1>;
@@ -105,7 +129,7 @@
 		scl-gpios = <&pio 3 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
 		sda-gpios = <&pio 3 6 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
 	};
-
+*/
 	i2c2: i2c-gpio_hamsterbear2 {
 
 		compatible = "i2c-gpio";
@@ -113,8 +137,8 @@
 		#size-cells = <0>;
 		status = "okay";
 		i2c-gpio,delay-us = <5>;
-		scl-gpios = <&pio 3 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-		sda-gpios = <&pio 3 6 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+		scl-gpios = <&pio 3 15 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+		sda-gpios = <&pio 3 16 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
 	};
 };
 
@@ -144,6 +168,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c0_pe_pins>;
 	status = "okay";
+	i2c-max-frequency = <400000>;
 
 	ds1307: rtc@68 {
 		compatible = "dallas,ds1307";
@@ -155,14 +180,13 @@
 	};
 };
 
-/*
 &i2c1 {
-	pinctl-names = "default";
+	pinctrl-names = "default";
 	pinctrl-0 = <&i2c1_pd_pins>;
 	status = "okay";
 	i2c-max-frequency = <400000>;
 };
-*/
+
 
 /*
 &i2c2 {
@@ -202,7 +226,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&spi1_pa_pins>;
 	status = "okay";
-        spi-max-frequency = <50000000>;
+    spi-max-frequency = <50000000>;
 
 	ssd1306: ssd1306@0 {
                 #address-cells = <1>;
@@ -215,10 +239,11 @@
                 fps = <60>;
                 spi-cpol;
                 spi-cpha;
-                /* reset-gpios = <&pio 4 9 GPIO_ACTIVE_HIGH>;
-                dc-gpios = <&pio 4 10 GPIO_ACTIVE_LOW>; */
+                /*reset-gpios = <&pio 4 9 GPIO_ACTIVE_HIGH>;
+                dc-gpios = <&pio 4 10 GPIO_ACTIVE_LOW>;*/
                 debug = <1>;
         };
+
 };
 
 &mmc0 {
