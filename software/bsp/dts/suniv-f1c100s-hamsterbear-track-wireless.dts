@@ -130,6 +130,7 @@
 		sda-gpios = <&pio 3 6 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
 	};
 */
+/*
 	i2c2: i2c-gpio_hamsterbear2 {
 
 		compatible = "i2c-gpio";
@@ -140,6 +141,13 @@
 		scl-gpios = <&pio 3 15 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
 		sda-gpios = <&pio 3 16 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
 	};
+*/
+    gpio_virt: gpio_virtualcontroller {
+        compatible = "hamsterbear,gpio_virt";
+        gpio-controller;
+        #gpio-cells = <2>;
+        ngpios = <4>;
+    };
 };
 
 &dma {
@@ -167,17 +175,18 @@
 &i2c0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c0_pe_pins>;
-	status = "okay";
+	status = "disabled";
 	i2c-max-frequency = <400000>;
-
+/*
 	ds1307: rtc@68 {
 		compatible = "dallas,ds1307";
-		status = "disabled";
+		status = "okay";
 		reg = <0x68>;
 		//interrupt-parent = <&gpio4>;
 		//interrupts = <20 0>;
 		trickle-resistor-ohms = <250>;
 	};
+*/
 };
 
 &i2c1 {
@@ -185,17 +194,27 @@
 	pinctrl-0 = <&i2c1_pd_pins>;
 	status = "okay";
 	i2c-max-frequency = <400000>;
+
+    pcf8574: gpio_controller@27 {
+        compatible = "hamsterbear,pcf8574";
+        status = "okay";
+		reg = <0x27>;
+        gpio-controller;
+        #gpio-cells = <2>;
+        base = <0>;
+        ngpios = <8>;
+    };
 };
 
 
-/*
+
 &i2c2 {
 	pinctl-names = "default";
 	pinctrl-0 = <&i2c2_pd_pins>;
-	status = "okay";
+	status = "disabled";
 	i2c-max-frequency = <400000>;
 };
-*/
+
 
 
 &spi0 {
@@ -216,8 +235,8 @@
                 fps = <60>;
                 spi-cpol;
                 spi-cpha;
-                reset-gpios = <&pio 4 10 GPIO_ACTIVE_HIGH>;	/* PE10 */
-                dc-gpios = <&pio 2 3 GPIO_ACTIVE_LOW>;		/* PC3 */
+                reset-gpios = <&pio 4 10 GPIO_ACTIVE_HIGH>;	// PE10
+                dc-gpios = <&pio 2 3 GPIO_ACTIVE_LOW>;		// PC3
                 debug = <1>;
         };
 };
@@ -227,7 +246,7 @@
 	pinctrl-0 = <&spi1_pa_pins>;
 	status = "okay";
     spi-max-frequency = <50000000>;
-
+/*
 	ssd1306: ssd1306@0 {
                 #address-cells = <1>;
                 #size-cells = <1>;
@@ -239,11 +258,11 @@
                 fps = <60>;
                 spi-cpol;
                 spi-cpha;
-                /*reset-gpios = <&pio 4 9 GPIO_ACTIVE_HIGH>;
-                dc-gpios = <&pio 4 10 GPIO_ACTIVE_LOW>;*/
+                reset-gpios = <&pio 4 9 GPIO_ACTIVE_HIGH>;
+                dc-gpios = <&pio 4 10 GPIO_ACTIVE_LOW>;
                 debug = <1>;
         };
-
+*/
 };
 
 &mmc0 {

@@ -85,7 +85,7 @@
 
 
 		i2c0: i2c@1c27000 {
-			compatible = "allwinner,sun4i-a10-i2c";
+			compatible = "allwinner,suniv-f1c100s-i2c";
 			reg = <0x01C27000 0x100>;
 			interrupts  = <7>;
 			clocks = <&ccu CLK_BUS_I2C0>, <&ccu CLK_BUS_I2C0>;
@@ -107,22 +107,9 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 		};
-/*
-		i2c1: i2c@1c27400 {
-			compatible = "allwinner,sun4i-a10-i2c";
-			reg = <0x01C27400 0x100>;
-			interrupts  = <8>;
-			clocks = <&ccu CLK_BUS_I2C1>, <&ccu CLK_BUS_I2C1>;
-			clock-names = "ahb", "mod";
-			resets = <&ccu RST_BUS_I2C1>;
-			status = "disabled";
-			#address-cells = <1>;
-			#size-cells = <0>;
-		};
-*/
-/*
+
 		i2c2: i2c@1c27800 {
-			compatible = "allwinner,sun4i-a10-i2c";
+			compatible = "allwinner,suniv-f1c100s-i2c";
 			reg = <0x01C27800 0x100>;
 			interrupts  = <9>;
 			clocks = <&ccu CLK_BUS_I2C2>, <&ccu CLK_BUS_I2C2>;
@@ -132,7 +119,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 		};
-*/
+
                 spi0: spi@1c05000 {
                         compatible = "allwinner,sun8i-h3-spi";
                         reg = <0x01c05000 0x1000>;
