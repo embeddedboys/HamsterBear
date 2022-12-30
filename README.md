@@ -5,15 +5,15 @@ HamsterBear
 
 ![HamsterBear](docs/docs/assets/hamsterbear_real.jpg "HamsterBear")
 
-HamsterBear 是基于全志 F1C200s 设计的嵌入式Linux开发板
+HamsterBear is a Embedded linux develop board based on Allwinner Tech F1C200s SoC
 
-访问本项目的网站：
+The website of this project:
 [`https://embeddedboys.github.io/HamsterBear/`](https://embeddedboys.github.io/HamsterBear/)
 
-硬件配置
+Hardware
 -------
 
-### 核心板
+### Core Board
 
 * `SoC` : F1C200s arm926ejs
 
@@ -31,58 +31,61 @@ HamsterBear 是基于全志 F1C200s 设计的嵌入式Linux开发板
 
 * `M2 NGFF` : 67Pins M-KEY 
 
-### 底板
+### Base Board
 
-* `USB OTG 或 USB HUB` : 由于SoC只有一组USB，所以需要跳线控制连接到OTG或HUB
+* `USB OTG or USB HUB` : The F1C200s only have one group of USB signal, so need a jumper to determine OTG or HUB is used
 
-* `USB OTG` : MicroUSB
+  * `USB OTG` : a MicroUSB interface
 
-* `USB HUB` : FE1.1s with eeprom
+  * `USB HUB` : FE1.1s with eeprom
 
-* `Wireless` : RTL8188EUS （仅限HUB可用时）
+* `Wireless` : RTL8188EUS (only can be used when HUB is enabled)
 
-* `3 USB`
+* `3 USB` : USB Type-A interface (only can be used when HUB is enabled)
 
-* `Display` : 1.69 inch TFT ST7789V
+* `Display` : 1.69 inch TFT ST7789V 280x240
 
 * `RTC` : DS1307
 
 * `Audio` : PJ-327A
 
-* `Keys` : ADC
+* `Keys` : ADC key tablet
 
 * `GPIO Expand` : PCA9536
 
-* `2 UART` : UART1 UART2
+* `2 UART` : Header
 
-* `2 I2C` : I2C1 I2C2
+* `2 I2C` : Header
 
-* `1 SDIO` : SDC1
+* `1 SDIO` : Header
 
-* `1 SPI` : SPI0
+* `1 SPI` : Header
 
-软件配置
+Software
 -------
 
 * `U-Boot` : 
-  * 可从sdcard启动的bsp uboot
-  * 可从nand flash启动的mainline uboot
+  * a bsp uboot can boot from SDcard
+  * a mainline uboot boot from nand flash 
 
-* `Kernel` : 主线 v5.17.0
+* `Kernel` : mainline v5.17.0
 
-* `Buildroot` : 主线 v2022.2
+* `Buildroot` : mainline v2022.2
 
     * directfb
     * X server
-    * x11vnc
     * Qt5
     * GTK
     * Python3.10
+    * etc
 
-网络连接可通过如下方式：
-1. USB 网络共享（g_ether）
-2. 底板RTL8188EUS无线模组
+The network connection can be used like:
+1. USB Network Share (g_ether)
 
-更多
+
+2. Wireless RTL8188EUS on base board
+
+More
 ----
-更多说明见仓库内各目录下自述文件
+
+For more helpful information, check offical website and README files.
